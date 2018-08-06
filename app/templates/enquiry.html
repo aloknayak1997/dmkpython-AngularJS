@@ -1,0 +1,129 @@
+<div class="container-fluid">
+    <span><h3>Enter Detail's</h3></span>
+        <div class="row">
+            <div class="col-sm-6" >
+                <label for="name">Name</label></label>
+                <input type="email" class="form-control" id="name" placeholder="Enter Name" >
+            </div>
+            
+            <div class="col-sm-6" >
+                <label for="emal">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" >
+            </div>
+
+            <div class="col-sm-6" >
+                <label for="email">Phone No</label></label>
+                <input type="phone" class="form-control" id="phone" placeholder="Enter Contact" >
+            </div>
+                
+            <div class="col-sm-6" >
+                    <label for="category">Select Gender</label>
+                <select class="custom-select" id="gender">
+                    <option value="" selected disabled>Gender</option>
+                    <option name="gender" value="Male">Male</option>
+                    <option value="Female" name="gender">Female</option>
+
+                </select>
+            </div>    
+                
+            <!-- <div class="col-sm-6" >
+                <label for="nationality">Select Category</label>
+                <input type="text" class="form-control" id="email" placeholder="Select Nationality" >
+            </div> -->
+            <div class="col-sm-6" >
+                    <label for="category">Select Intrest</label>
+                <select class="custom-select" id="select_intrest">
+                    <option value="" selected disabled>Select Intrest</option>
+                    <option name="cycle" value="1">Cold</option>
+                    <option name="cycle" value="2">Hot</option>
+                    <option name="cycle" value="3">Low</option>
+                    <option value="4" name="cycle">High</option>
+
+                </select>
+            </div>
+
+            <div class="col-sm-6" >
+                    <label for="category">Select Courses</label>
+                <select class="custom-select" id="select_course">
+                    <option value="" selected disabled>Select Courses</option>
+                    <option name="class" value="1">1A</option>                      
+                </select>
+            </div>
+
+
+            
+        </div>
+        <center><button type="submit" class="btn btn-primary m-3 submit_enquiry">Submit</button></center>
+
+
+        <script>
+        $(document).ready(function () {
+            $("body").delegate(".submit_enquiry", "click", function(){
+                     var phone = $("#phone").val();
+
+                  if($("#name").val() == ''){
+                      alert("Please Enter name");
+                      return false;
+                  }
+
+                  if($("#email").val() == ''){
+                      alert("Please Enter email");
+                      return false;
+                  }
+
+                  if ((phone.length >0) && ( phone.length!= 10)) {
+                    alert("Please Enter 10 digit phone no");
+                  }
+
+                  if($("#gender").find('option:selected').val() == ''){
+                      alert("Please Select Gender");
+                      return false;
+                  }
+
+                  if($("#select_intrest").find('option:selected').val() == ''){
+                      alert("Please Select Intest");
+                      return false;
+                  }
+
+                  if($("#select_course").find('option:selected').val() == ''){
+                      alert("Please Select Course");
+                      return false;
+                  }
+
+
+
+
+
+                var enquiryData = [];
+                enquiryData.push($("#name").val());
+                enquiryData.push($("#email").val());
+                enquiryData.push($("#phone").val());
+                enquiryData.push($("#gender").find('option:selected').val());
+                enquiryData.push($("#select_intrest").find('option:selected').val());
+                enquiryData.push($("#select_course").find('option:selected').val());
+                console.log(enquiryData);
+                console.log(ip);
+	            var url_for_enquiry = ip +"admission_management/addenquiry";
+    $.ajax({
+		url: url_for_enquiry,
+		type: "POST",
+		enctype:"multipart/form-data",
+		data: {
+			'enquiryData' : enquiryData,
+		},
+		success: function (response) {
+			console.log(response);
+			// location.reload();
+            // alert("Successfully Added!");
+            myToast("<h5>"+response.message+"</h5>",{color:'success'});
+
+		},
+		error: function (response) {
+			alert("Enquiry Registration Failed, you may have filled some data wrong.")
+			console.log(response);
+		},
+	  });//End of ajax request
+	
+            });
+        });
+</script>    

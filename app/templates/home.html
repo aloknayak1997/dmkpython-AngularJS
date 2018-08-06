@@ -1,0 +1,147 @@
+<!-- Page Heading Start-->
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard User</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Heading End-->
+
+<!-- Page Content Goes Here-->
+<div class="content mt-3">
+
+  <!-- ####################################################
+          #####     Progress bar ##############################
+          ##################################################### -->
+  <style type="text/css">
+    div#status {
+      margin: 2%;
+    }
+
+    #myProgress {
+      width: 95%;
+      background-color: #d5daf7;
+      border-radius: 118px;
+      padding: 4px;
+    }
+  </style>
+  <div id="status" style="margin-top: -20px; width:950px;">
+    <h6> Profile Updated
+      <span id="value"> 50 </span> % &nbsp;&nbsp;&nbsp;
+      <a href="#" style="color: blue">Update Now</a>
+    </h6>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:50%">50%</div>
+    </div>
+  </div>
+  <div class="overlay" style="width: 250px;height: 200px;float: bottom;">
+    <div class="close">x</div>
+    <a href="/profile" style="color: black">Your profile is incomplete please fill it.</a>
+    <br>
+    <a href="/incomplete_student" style="color: black"> Some of the students data is incomplete please fill it.</a>
+  </div>
+  <style type="text/css">
+    .overlay {
+      background: lightgrey;
+      padding: 13px;
+      color: white;
+      position: fixed;
+      box-shadow: 1px 12px 43px -5px black;
+      opacity: 0.48;
+      z-index: 1000;
+      border-radius: 9px;
+      margin: -41% 3% 3% 3%;
+      transition: margin 2s ease;
+      animation: animate 0.8s forwards;
+      transition-duration: 2s;
+    }
+
+    .green {
+      background: green;
+    }
+
+    @keyframes animate {
+      0% {
+        opacity: 0.85;
+        margin: -26% 3% 3% 3%;
+      }
+
+      25% {
+        opacity: 0.89;
+        margin: 1% 3% 3% 3%
+      }
+
+      60% {
+        opacity: 0.89;
+        margin: 2% 3% 3% 3%
+      }
+
+      100% {
+        opacity: 0.98;
+        margin: 3% 3% 3% 3%
+      }
+    }
+  </style>
+
+  <script type="text/javascript">
+$('.overlay').click(function () {
+            $(this).remove();
+    });
+
+
+
+  </script>
+
+  <!-- #####################################################################
+          ########################## Conatiner MAin #############################
+          ##################################################################### -->
+  <div id="mainContent">
+    <div>
+      <script type="text/javascript">
+        window.onload = function () {
+          var chart = new CanvasJS.Chart("chartContainer",
+            {
+              title: {
+                text: "Profile Updated"
+              },
+              data: [
+                {
+                  type: "doughnut",
+                  dataPoints: [
+                    { y: 23.37, indexLabel: "Personal" },
+                    { y: 15.0, indexLabel: "Institutional" },
+                    { y: 15, indexLabel: "Parents" },
+                    { y: 12, indexLabel: "Class" },
+                    { y: 35, indexLabel: "Incomplete" }
+                  ]
+                }
+              ]
+            });
+
+          chart.render();
+        }
+      </script>
+      <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+      </head>
+
+      <body>
+        <div id="chartContainer" style="height: 250px; width: 40%;">
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+
+  </div>
+</div>
+</div>
+</div>
+<!-- Content End -->

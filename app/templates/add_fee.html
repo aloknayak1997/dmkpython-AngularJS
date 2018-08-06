@@ -1,0 +1,193 @@
+<style>
+  .one-class {
+    display: inline-flex;
+    background: #d3d3d34f;
+    padding: 4px;
+    margin: 3px;
+    border-radius: 20px;
+    transform: scale(0.87)
+  }
+
+
+  .md-padding.selectdemoSelectHeader {
+    padding: 5% 0 0 34px;
+  }
+
+  .tab {
+    margin-left: 3px;
+  }
+
+  .accordion {
+    padding: 6px;
+  }
+
+  md-input-container.md-icon-float.md-block {
+    margin: 0 0 0 21px;
+  }
+
+  .panel {
+    display: table-column-group;
+  }
+
+  .md-errors-spacer {
+    float: none !important;
+    font-size: 14px;
+  }
+
+  .fee {
+    display: inline-flex;
+    margin: 0 9px;
+    background: white;
+    padding: 5px;
+    border-radius: 24px;
+  }
+
+  div.tab {
+    background: #d0cfcf;
+    border-radius: 20px;
+    padding: 5px;
+    display: inline-flex;
+  }
+
+  div#generatedfees {
+    margin: 0 31px;
+  }
+
+  i.far.fa-times-circle {
+    margin: 3px;
+  }
+</style>
+
+<link rel="stylesheet" href="https://material.angularjs.org/1.1.10/docs.css">
+<link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.10/angular-material.css">
+<div style="margin-bottom: -20px">
+  <div class="" style="margin-left: 10px">
+    <a class="btn-floating waves-effect waves-light title-back-btn" onclick="window.history.back();" onmouseover="" style="cursor: pointer;">
+      <img src="/media/icons8-left-64.png" style="height: 45px;width: 45px; margin-bottom:5px;"> </a>
+    <span class="grey-text text-darken-2" style="font-size: 1.64rem;line-height: 52px; margin-left: 50px;">Add Fee</span>
+  </div>
+</div>
+<hr>
+
+<div class="col s12 m12 l12 padding-right-0 " style="padding-bottom:10%;">
+
+  <div class="table">
+    <div class="card lighten-5 card_align_left">
+      <div class="card-content white-text list_view">
+        <!--Student list view-->
+
+        <div style="display: inline;">
+          <div class="md-padding selectdemoSelectHeader" ng-cloak="">
+            <div>
+              <div layout="row">
+                <md-input-container>
+                  <label>Class</label>
+                  <md-select ng-blur="getfee()" ng-model="selectedclass" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader"
+                    multiple>
+                    <md-select-header class="demo-select-header">
+                      <input id="search-filter" ng-model="searchTerm" type="search" placeholder="Search for a Class.." class="demo-header-searchbox md-text">
+                    </md-select-header>
+                    <md-optgroup label="class">
+                      <md-option data-id="{{x.id}}" ng-repeat="x in classes |filter:searchTerm">{{x.class}}</md-option>
+                    </md-optgroup>
+                  </md-select>
+                </md-input-container>
+                <div id="fees_alloted"></div>
+              </div>
+            </div>
+          </div>
+          <div id="div_fee">
+            <div id="fees" style="display: inline-flex !important;margin: 26px 0 0 0;">
+              <div class="fee">
+                <md-input-container class="md-icon-float md-block">
+                  <label>Name</label>
+                  <input id="feeinput" type="text">
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                  <label>Amount</label>
+                  <input id="feeamount" type="text">
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" style="padding: 0 30px;">
+                  <label style="margin: 0 0 0 28px;">Cycle</label>
+                  <md-select ng-model="addfee.cycle">
+                    <md-option class="feecycle" data-id='{{cycle.id}}' data-name='{{cycle.name}}' ng-repeat="cycle in [{name:'Monthly',id:'3'},{name:'Half-Yearly',id:'2'},{name:'Quartely',id:'4'},{name:'Annually',id:'1'}]"
+                      ng-value="cycle">
+                      {{cycle.name}}
+                    </md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+
+              <span ng-click="addfee()" style="cursor: pointer;padding: 2%;" name="add_another" id="add_another" value="add another" data-toggle="tooltip"
+                title="Add another fee">
+                <i class="fa fa-plus-circle" style="font-size:32px;"></i>
+              </span>
+            </div>
+            <div id="generatedfees"></div>
+            <div style=" padding: 15px 24px; ">
+              <md-button md-no-ink class="md-raised md-primary" ng-click="savefee()">Submit</md-button>
+            </div>
+          </div>
+          <script type="text/javascript">
+            $(document).ready(function () {
+              $(document).on('click', '.tab, i.far.fa-times-circle', function () { $(this).remove(); });
+              $(document).on('click', '.close', function () { $('.generated_tab').remove(); });
+            });
+
+            var counter = 1;
+            // $("#add_another").click(function () {
+            //   var feenames ={{feenames}};
+            //   cosnole.log('feenames'+feenames);
+            // });
+          </script>
+          <!-- <input type="button" id="add" name="submit" value="submit" class="form-control" style="width: 100px;margin: 20px 20px"> -->
+          </form>
+
+          <script type="text/javascript">
+            $(document).on('click', '.close', function () { $('.generated_tab').remove(); });
+
+            $(document).ready(function () {
+              $('[data-toggle="tooltip"]').tooltip();
+            });
+
+
+
+            /////////////////////////////////////////////////////////////////////////////checking for number input in text box amount /////////////////// /////////////////////////////////////////////////////////////////////
+            $(document).ready(function () {
+              $("#amount").forceNumeric();
+              $(".another_amount").forceNumeric();
+            });
+
+            // forceNumeric() plug-in implementation
+            jQuery.fn.forceNumeric = function () {
+              return this.each(function () {
+                $(this).keydown(function (e) {
+                  var key = e.which || e.keyCode;
+
+                  if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+                    // numbers   
+                    key >= 48 && key <= 57 ||
+                    // Numeric keypad
+                    key >= 96 && key <= 105 ||
+                    // comma, period and minus, . on keypad
+                    key == 190 || key == 188 || key == 109 || key == 110 ||
+                    // Backspace and Tab and Enter
+                    key == 8 || key == 9 || key == 13 ||
+                    // Home and End
+                    key == 35 || key == 36 ||
+                    // left and right arrows
+                    key == 37 || key == 39 ||
+                    // Del and Ins
+                    key == 46 || key == 45)
+                    return true;
+
+                  return false;
+                });
+              });
+            }//end of number check
+
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>

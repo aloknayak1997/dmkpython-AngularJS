@@ -1,0 +1,169 @@
+  <script src="tatic/js/third_party/jquery.easing.min.js"></script>
+
+  <!-- Page Heading Start-->
+  <div class="breadcrumbs shadow-0">
+    <div class="breadcrumbs-inner">
+      <div class="row m-0">
+        <div class="col-sm-4">
+          <div class="page-header float-left">
+            <div class="page-title">
+              <h1>Add Class</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="page-header float-right">
+            <div class="page-title">
+              <ol class="breadcrumb text-right">
+                <li><a href="/">Dashboard</a></li>
+                <li class="active">Add Class</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Heading End-->
+  <!-- Page Content Goes Here-->
+  <div class="content mt-3">
+    <div class="row">
+      <div class="col-sm-12 col-lg-10 col-md-12">
+
+        <div class="card" id="add-class-card">
+          <div class="card-body add-class-body">
+            <h5 class="card-title text-primary">Add Class: Standard - Division</h5>
+
+            <div class="row mb-4">
+              <div class="col-md-10 input-group input-group-sm my-custom-select">
+                <div class="input-group-prepend">
+                  <i class="input-group-text fa fa-graduation-cap" aria-hidden="true"></i>
+                </div>                
+                <select class="custom-select custom-select-sm select-dept">
+                  <option value="" selected>Select Department</option>
+                  <option value="{{ i.id }}">{{ i.name }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row first-row">
+
+              <div class="col-md-5 col-sm-12 input-group input-group-sm form-group">
+                <div class="input-group-prepend">
+                  <i class="input-group-text fa fa-bookmark" aria-hidden="true"></i>
+                </div>
+                <input class="form-control c-standard" type="text" name="standard" placeholder="Standard">
+              </div>
+
+              <div class="col-md-5 col-sm-12 input-group input-group-sm form-group">
+                <div class="input-group-prepend">
+                  <i class="input-group-text fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                </div>
+                <input class="form-control c-division" type="text" name="division" placeholder="Division (comma separated: A,B,C...)">
+              </div>
+
+              <div class="col-md-2 col-sm-12 text-center action-btn-1">
+                <a href="#" class="btn btn-sm btn-primary add-stan-sec"><i class="fa fa-plus"></i></a>
+              </div>
+
+              <div class="col-md-2 col-sm-12 text-center action-btn-2 d-none">
+                <a href="#" class="btn btn-sm btn-danger remove-stan-sec"><i class="fa fa-minus"></i></a>
+              </div>
+
+            </div><!-- End Card Row -->
+            <div class="row second-row"></div>
+
+            <a href="#" class="btn btn-primary d-none submit-stan-sec">Submit</a>
+          </div><!-- End Body 1 -->
+          
+          <!-- Second Card Body -->
+          <div class="card-body add-class-body">
+            <!-- <a href="#" class="btn btn-light previous pull-right"><i class="fa fa-arrow-left"></i></a> -->
+            <h5 class="card-title text-primary">Add Session for Classes</h5>
+
+            <div class="row">
+
+              <div class="col-md-6 input-group input-group-sm form-group my-custom-select" data-toggle="tooltip" data-placement="left" title="Role">
+                <div class="input-group-prepend">
+                  <i class="input-group-text fa fa-user-circle" aria-hidden="true"></i>
+                </div>
+                <select id="id_session_start" class="custom-select custom-select-sm">
+                    <option value="" disabled selected>Select Start Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+              </div>
+
+              <div class="col-md-6 input-group input-group-sm form-group my-custom-select" data-toggle="tooltip" data-placement="left" title="Role">
+                <div class="input-group-prepend">
+                  <i class="input-group-text fa fa-user-circle" aria-hidden="true"></i>
+                </div>
+                <select id="id_session_end" class="custom-select custom-select-sm">
+                    <option value="" disabled selected>Select Start Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+              </div>
+            
+              <div class="col md-12 ml-4">
+                <div class="custom-control custom-checkbox session-select-all">
+                  <!-- <input type="checkbox" checked="" disabled="" class="custom-control-input" id="sess-check-all">
+                  <label class="custom-control-label" for="sess-check-all">Select All Classes</label> -->
+                </div>
+              </div>
+
+            </div><!-- End Card Row -->
+
+            <a href="#" class="btn btn-primary ml-4 mt-4 set-class-session">Submit</a>
+          </div><!-- End Body 2 -->
+
+          <!-- Third Card Body -->
+          <div class="card-body add-class-body">
+            <!-- <a href="#" class="btn btn-light previous pull-right"><i class="fa fa-arrow-left"></i></a> -->
+            <h5 class="card-title text-primary">Add Subjects</h5>
+
+            <div class="row">
+              <div class="col-md-12">
+                <p id="cssub-collapse-trigger" class="btn-group-toggle ml-3" data-toggle="buttons"></p>
+
+              </div>
+            </div><!-- End Card Row -->
+
+            <a href="#" class="btn btn-primary ml-4 submit-sess-sub">Submit</a>
+          </div><!-- End Body 3 -->
+
+        </div><!-- End Card -->
+
+      </div><!-- End Grid -->
+    </div><!-- End Row -->
+  </div><!-- Content End -->
+  <script>
+    
+    var profiling_urls = {
+      'addclass':ip+'profiling/class/',
+      'addsession':ip+'profiling/session/',
+      'addsessionsub':ip+'profiling/session-sub/',
+    }
+  
+  </script>
+  <script src="staticjs/dpy_classprofiling.js"></script>

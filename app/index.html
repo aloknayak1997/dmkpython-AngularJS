@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html ng-app='dmk'>
+
+<head>
+    <meta charset="utf-8">
+    <title>Digimkey</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="media/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/pikaday.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/shepherd.theme.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/dpy_custom.css">
+    <link href="./main.css" rel="stylesheet">
+    <!-- JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.7.0/lodash.min.js"></script>
+    <script src="static/js/third_party/jquery.min.js"></script>
+    <script src="static/js/third_party/popper.min.js"></script>
+    <script src="static/js/third_party/bootstrap.min.js"></script>
+    <script src="static/js/third_party/tether.min.js"></script>
+    <script src="static/js/third_party/shepherd.min.js"></script>
+    <script src="static/js/third_party/moment.min.js"></script>
+    <script src="static/js/third_party/pikaday.min.js"></script>
+    <script src="static/js/dpy_custom.js"></script>
+</head>
+
+<body>
+    <script>
+        var ip = 'http://127.0.0.1:8000';
+        var g_urls = {
+            'login': ip + '/auth/rest-auth/login/',
+            'logout': ip + '/auth/rest-auth/logout/',
+            'set_institute': ip + '/auth/set-institute/',
+        };
+
+    </script>
+    <script src="static/js/dpy_auth.js"></script>
+    <div id="blackblur" style="display: none;width: 100%;height:  100%;background: black;position:  fixed;opacity: 0.5;z-index: 99999999;"></div>
+    <div id="reciept" style="display: none;position: fixed;background: white;padding: 3%;margin: 5% 0 0 30%;z-index: 2147483647;box-shadow: 1px 1px 21px -10px;">
+        <div>
+            <div class="close" style="background: #ff0000;display: inline-flex;margin: 0 0 0 35%;opacity: 1;padding: 2px 5px;position: fixed;color: #fff;">
+                x</div>
+            <div onclick="printDiv('feereciept')" style="background: #37b5ff;display:  inline-flex;margin: 0 0 0 33%;padding: 6px;position:  fixed;">
+                <i class="fas fa-print"></i>
+            </div>
+        </div>
+
+        <div id="feereciept" style=" overflow: scroll; height: 495px; "></div>
+    </div>
+    <!-- Left Panel -->
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#!/">
+                    <span style="color: #dadada;">DIGIM</span>
+                    <span style="color: #ea4235;">KEY</span>
+                </a>
+                <a class="navbar-brand hidden" href="#!/">
+                    <span style="color: #dadada;">D</span>
+                </a>
+            </div>
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#!/home">
+                            <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li>
+                    <h3 class="menu-title">Profile</h3>
+                    <!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-laptop"></i>Students</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="fa fa-address-card"></i>
+                                <a href="#!/view_student">View Student</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-puzzle-piece"></i>
+                                <a href="#!/add_students">Add Student</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-table"></i>Teacher</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <!-- <li>
+                                <i class="fa fa-table"></i>
+                                <a href="#!onboarding/viewteachers">View Teacher</a>
+                            </li> -->
+                            <li>
+                                <i class="fa fa-table"></i>
+                                <a href="#!/add_teacher">Add Teacher</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-th"></i>Class</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="menu-icon fa fa-th"></i>
+                                <a href="#!/view-departments">View Classes</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-th"></i>
+                                <a href="#!/add-class">Add Class</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-th"></i>
+                                <a href="#!/time-table">Manage Timetable</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <h3 class="menu-title">Services</h3>
+                    <!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-money"></i>Fee Management</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="menu-icon fa fa-puzzle-piece"></i>
+                                <a href="#!/add_fee">Add Fee</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-th"></i>
+                                <a href="#!/fee_types">Fee Types</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-puzzle-piece"></i>
+                                <a href="#!/pay">Pay</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-briefcase"></i>HR Management</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="menu-icon fa fa-user-plus"></i>
+                                <a href="#!/addemp">Add Employee</a>
+                            </li>
+                            <!-- <li><i class="menu-icon fa fa-users"></i><a href="forms-advanced.html">View Employee</a></li> -->
+                            <li>
+                                <i class="menu-icon fa fa-users"></i>
+                                <a href="#!/leave">apply Leave</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-users"></i>
+                                <a href="#!/generate_salary">Generate Salary slip</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-users"></i>
+                                <a href="#!/salary_structure">Salary structure</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-th"></i>Admission Management</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="menu-icon fa fa-th"></i>
+                                <a href="#!/enquiry">Add Enquiry</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-th"></i>
+                                <a href="#!/view_enquiry">View Enquiry</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-th"></i>
+                                <a href="#!/admission">Admission Enquiry</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-th"></i>
+                                <a href="#!/view_admission">View Admission Enquiry</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <h3 class="menu-title">Report</h3>
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-tasks"></i>Report 1</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="menu-icon fa fa-fort-awesome"></i>
+                                <a href="font-fontawesome.html">View Report 1</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="widgets.html">
+                            <i class="menu-icon ti-email"></i>Attendance Report </a>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-bar-chart"></i>Report 2</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="menu-icon fa fa-line-chart"></i>
+                                <a href="charts-chartjs.html">View Report 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-area-chart"></i>Report 3</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="menu-icon fa fa-map-o"></i>
+                                <a href="maps-gmap.html">View Report 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <h3 class="menu-title">Event</h3>
+                    <!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-glass"></i>SMS</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="menu-icon fa fa-sign-in"></i>
+                                <a href="page-login.html">Login</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-sign-in"></i>
+                                <a href="page-register.html">Register</a>
+                            </li>
+                            <li>
+                                <i class="menu-icon fa fa-paper-plane"></i>
+                                <a href="pages-forget.html">Forget Pass</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+    </aside>
+    <!-- /#left-panel -->
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        <header id="header" class="header">
+            <div class="header-menu">
+                <div id="google_translate_element" class="skiptranslate"></div>
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'bn,en,gu,hi,ml,mr,pa,sd,si,ta,ur', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                    }
+                </script>
+                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left">
+                        <i class="fa fa fa-tasks"></i>
+                    </a>
+                    <div class="header-left">
+                        <button class="search-trigger">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">5</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media bg-flat-color-1">
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-4">
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-5">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="dropdown for-message">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="count bg-primary">9</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="message">
+                                <p class="red">You have 4 Mails</p>
+                                <a class="dropdown-item media bg-flat-color-1">
+                                    <span class="photo media-left">
+                                        <img alt="avatar" src="/media/emp_default.png">
+                                    </span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jonathan Smith</span>
+                                        <span class="time float-right">Just now</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-4">
+                                    <span class="photo media-left">
+                                        <img alt="avatar" src="/media/emp_default.png">
+                                    </span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jack Sanders</span>
+                                        <span class="time float-right">5 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-5">
+                                    <span class="photo media-left">
+                                        <img alt="avatar" src="/media/emp_default.png">
+                                    </span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Cheryl Wheeler</span>
+                                        <span class="time float-right">10 minutes ago</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-3">
+                                    <span class="photo media-left">
+                                        <img alt="avatar" src="/media/emp_default.png">
+                                    </span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Rachel Santos</span>
+                                        <span class="time float-right">15 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <span style="line-height:40px;margin:0 1rem;">User</span>
+                        <a class="dropdown-toggle dashboard-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle my-settings" src="/media/emp_default.png" alt="User Avatar">
+                        </a>
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="#!/profile">
+                                <i class="fa fa-user"></i>My Profile</a>
+                            <a class="nav-link">
+                                <i class="fa fa-user"></i>Notifications
+                                <span class="count">13</span>
+                            </a>
+                            <a class="nav-link">
+                                <i class="fa fa fa-bullhorn"></i>Membrship plan</a>
+                            <a class="nav-link">
+                                <i class="fa fa fa-credit-card"></i>Validity</a>
+                            <a class="nav-link">
+                                <i class="fa fa fa-credit-card-alt"></i>Pay Now</a>
+                            <a class="nav-link">
+                                <i class="fa fa fa-comments"></i>FAQ's</a>
+                            <a class="nav-link">
+                                <i class="fa fa fa-money"></i>refer & earn </a>
+                            <a class="nav-link" href="#!/reset_profile">
+                                <i class="fa fa fa-plug"></i>Reset profile </a>
+                            <a class="nav-link" href="#!/feedback_form">
+                                <i class="fa fa fa-bullhorn"></i>Feedback</a>
+                            <a class="nav-link" href="#!/update_password">
+                                <i class="fa fa fa-gears"></i>Change Password</a>
+                            <a class="nav-link">
+                                <i class="fa fa-cog"></i>Settings</a>
+                            <a class="nav-link">
+                                <i class="fa fa fa-question-circle"></i>Help</a>
+                            <a class="nav-link">
+                                <i class="fa fa fa fa-newspaper-o"></i>About us</a>
+                            <span class="nav-link btn-logout">
+                                <i class="fa fa-power-off"></i>Logout</span>
+                        </div>
+                    </div>
+                    <div class="language-select dropdown" id="language-select">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="language" aria-haspopup="true" aria-expanded="true">
+                            <i class="flag-icon flag-icon-us"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="language">
+                            <div class="dropdown-item">
+                                <span class="flag-icon flag-icon-fr"></span>
+                            </div>
+                            <div class="dropdown-item">
+                                <i class="flag-icon flag-icon-es"></i>
+                            </div>
+                            <div class="dropdown-item">
+                                <i class="flag-icon flag-icon-us"></i>
+                            </div>
+                            <div class="dropdown-item">
+                                <i class="flag-icon flag-icon-it"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- /header -->
+        <div ng-view class="content mt-3">
+
+        </div>
+
+    </div>
+    <!-- /#right-panel -->
+
+</body>
+
+<script>
+    $(document).ready(function () {
+        $(document.body).on('click', '#menuToggle', function () {
+            $(document.body).toggleClass('open');
+        });
+    });
+    var getCookie = function (name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    };
+
+
+</script>
+<script src="./scripts.js"></script>
+<script src="static/app.js"></script>
+<script src="static/controllers/controllers.js"></script>
+
+</html>

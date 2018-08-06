@@ -1,0 +1,87 @@
+ <!-- Page Heading Start-->
+  <div class="breadcrumbs shadow-0">
+    <div class="breadcrumbs-inner">
+      <div class="row m-0">
+        <div class="col-sm-4">
+          <div class="page-header float-left">
+            <div class="page-title">
+              <h1>Profile</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="page-header float-right">
+            <div class="page-title">
+              <ol class="breadcrumb text-right">
+                <li><a href="/">Dashboard</a></li>
+                <li class="active">Profile</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Heading End-->
+  <!-- Page Content Goes Here-->
+  <div class="content mt-3">
+    <div class="row">
+      <!-- profile-widget -->
+      <div class="col-lg-12">
+        <div class="card profile-widget profile-widget-info" style="position: relative;">
+          <img class="my-img rounded-circle def-institute-logo" src="{{ user_info.institute_info.0.institute.logo }}" alt="">
+          <img class="card-img-top" src="{{ user_info.institute_info.0.institute.institute_image }}" alt="Card image cap">
+          <h2 class="def-institute-name">{{ user_info.institute_info.0.institute.name }}</h2>
+          <div class="card-body pl-0 pt-0 pb-0" style="position: relative;">
+            <a style="position: absolute;right:1rem;top:0.5rem;" class="btn text-primary rounded-circle mt-2 pull-right" data-toggle="tooltip" data-placement="left" title="Edit profile details." href="{% url 'dashboard:profile_edit' %}"><i class="fa fa-pencil"></i></a>
+            
+            <div class="col-lg-2 col-sm-2 p-0">
+              <div class="follow-ava">
+                <img class="my-img" src="{{ user_info.user.image }}" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-4 follow-info">
+
+              <h4 class="text-primary">{{ request.user.get_short_name }}</h4>
+              <p class="mb-1"><i style="min-width:25px;text-align: center;" class="fa fa-envelope"></i><b style="width: 70px;display: inline-block;">Email</b>: {{ user_info.user.email }}</p>
+              <p class="mb-1"><i style="min-width:25px;text-align: center;" class="fa fa-mobile"></i><b style="width: 70px;display: inline-block;">Mobile</b>: {{ user_info.user.mobile }}</p>
+
+              <p class="mb-1">
+                <i style="min-width:25px;text-align: center;" class="fa fa-shield"></i><b style="width: 70px;display: inline-block;">Role</b>:
+                {% if user_info.institute_info.0.role == 0 %} Admin {% endif %}
+                {% if user_info.institute_info.0.role == 1 %} Principal {% endif %}
+                {% if user_info.institute_info.0.role == 2 %} Trustee {% endif %}
+                {% if user_info.institute_info.0.role == 3 %} Director {% endif %}
+                {% if user_info.institute_info.0.role == 4 %} HOD(Head Of Department) {% endif %}
+                {% if user_info.institute_info.0.role == 5 %} Owner {% endif %}
+              </p>
+            </div>
+            
+<!--             <div class="col-lg-2 col-sm-2 p-0">
+              <div class="follow-ava">
+                <img class="my-img" src="{{ user_info.institute.logo }}" alt="">
+              </div>
+            </div> -->
+
+            <div class="col-lg-4 col-sm-4 follow-info">
+              <h4 class="text-primary">{{ user_info.institute_info.0.institute.name }}</h4>
+              <p class="mb-1"><i style="min-width:25px;text-align: center;" class="fa fa-envelope"></i><b style="width: 70px;display: inline-block;">Email</b>: {{ user_info.institute_info.0.institute.email }}</p>
+              <p class="mb-1"><i style="min-width:25px;text-align: center;" class="fa fa-phone-square"></i><b style="width: 70px;display: inline-block;">Contact</b>: {{ user_info.institute_info.0.institute.contact }}</p>
+              <p class="mb-1"><i style="min-width:25px;text-align: center;" class="fa fa-address-card"></i><b style="width: 70px;display: inline-block;">Address</b>: {{ user_info.institute_info.0.institute.address }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+    </div>    
+  </div>
+  <script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({
+      animation:false,
+    });
+  });
+  </script>
+  <!-- Content End -->

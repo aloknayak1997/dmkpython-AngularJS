@@ -1,0 +1,59 @@
+<div style="margin-bottom: -20px">
+	<div class="" style="margin-left: 10px">
+    <a class="btn-floating waves-effect waves-light title-back-btn" onclick="window.history.back();" onmouseover="" style="cursor: pointer;">
+      <img src="/media/icons8-left-64.png" style="height: 45px;width: 45px; margin-bottom:5px;">  </a>
+     <span class="grey-text text-darken-2" style="font-size: 1.64rem;line-height: 52px; margin-left: 50px;">Students</span>
+    </div>
+  
+</div>
+<hr>
+<div>
+ <input class="form-control" id="myInput" type="text" style="width: 400px; margin: 10px;border-color: black" placeholder="Search..">
+ </div>         
+      <div class="col s12 m12 l12 padding-right-0 " style="padding-bottom:10%;">
+
+    <div class="table">
+        <div class="card grey lighten-5 card_align_left">
+          <div class="card-content white-text list_view">
+            <!--Student list view-->
+            <div id="student_list_view">
+              
+            <table  border="0" style="border: 0px solid grey; background-color:white; width: 1000px; font-size: 15px" class="table table-hover table-borderless bordered vertical_striped tablesorter">
+              <thead>
+                <th style="background-color: #e5e5e5">Id</th>
+                <th>Name</th>
+                <th style="background-color: #e5e5e5">Gender</th>
+                <th>DOB</th>
+                <th style="background-color: #e5e5e5">Class</th>
+                <th>Roll No.</th>
+                <th style="background-color: #e5e5e5">Parent Name</th>
+                <th>Parent Phone</th>
+                <th style="background-color: #e5e5e5">Email</th>
+              </thead>
+            
+              <tbody id="myTable">
+                <tr data-id="{{form.id}}" class='clickable-row' id="">
+                  <td style="background-color: #e5e5e5">{{form.id}}</td>
+                  <td id="name"><a  style="color: blue" href="{% url 'dashboard:student_profile' id=form.id %}">{{form.first_name}} &nbsp; {{form.last_name}} </a></td>
+                  <td style="background-color: #e5e5e5">
+                  </td>
+                  <td style="background-color: #e5e5e5">
+                  </td>
+                  <td>
+                  </td>
+                </tr> 
+             </tbody>
+       		</table>
+       		</div>
+       		</div>
+       		</div>
+         <script>//this script for filter the searchbox data of list institute form
+             $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function() {
+                      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                      });
+                  });
+             });
+            </script>

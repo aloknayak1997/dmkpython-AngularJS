@@ -1,0 +1,223 @@
+  <!-- Page Heading Start-->
+  <div class="breadcrumbs shadow-0">
+    <div class="breadcrumbs-inner">
+      <div class="row m-0">
+        <div class="col-sm-4">
+          <div class="page-header float-left">
+            <div class="page-title">
+              <h1>Class Info: <span class="badge badge-primary px-2 py-1">{{ class_info.standard }}</span><span class="badge badge-secondary px-2 py-1">{{ class_info.division }}</span></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="page-header float-right">
+            <div class="page-title">
+              <ol class="breadcrumb text-right">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="{% url 'class_user_profiling:viewdept' %}">Departments</a></li>
+                <li><a href="{% url 'class_user_profiling:viewclasses' dep_id %}">Classes</a></li>
+                <li class="active">Class Info</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Heading End-->
+  <!-- Page Content Goes Here-->
+  <div class="content mt-3">
+    <div class="row">
+      <div class="col-md-12">
+ 
+        <nav>
+          <div class="nav nav-tabs class-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-main-tab" data-toggle="tab" href="#nav-main" role="tab" aria-controls="nav-main" aria-selected="true">Class Info</a>
+            <a class="nav-item nav-link" id="nav-student-tab" data-toggle="tab" href="#nav-student" role="tab" aria-controls="nav-student" aria-selected="false">Students</a>
+            <a class="nav-item nav-link" id="nav-subject-tab" data-toggle="tab" href="#nav-subject" role="tab" aria-controls="nav-subject" aria-selected="false">Subjects</a>
+            <a class="nav-item nav-link" id="nav-attendance-tab" data-toggle="tab" href="#nav-attendance" role="tab" aria-controls="nav-attendance" aria-selected="false">Attendance</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <!-- Class info Tab -->
+          <div class="tab-pane fade show active" id="nav-main" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="card">
+              <h5 class="card-header"> {{ class_info.standard }} {{ class_info.division }} </h5>
+            </div>
+          </div><!-- End Class info Tab -->
+          <!-- Student Tab -->
+          <div class="tab-pane fade" id="nav-student" role="tabpanel" aria-labelledby="nav-studnet-tab">
+            <div class="card">
+              <h5 class="card-header">Student </h5>
+             
+            </div>
+          </div><!-- End Studnet Tab -->
+          <!-- Subject Tab -->
+          <div class="tab-pane fade" id="nav-subject" role="tabpanel" aria-labelledby="nav-subject-tab">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-primary">Class Session</h5>
+                <div class="row first-row">
+
+                  <div class="col-md-6 input-group input-group-sm form-group my-custom-select" data-toggle="tooltip" data-placement="left" title="Role">
+                    <div class="input-group-prepend">
+                      <i class="input-group-text fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                    <select id="session_start_id" class="custom-select custom-select-sm c-start_session">
+                        <option value="" disabled selected>Select Start Month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6 input-group input-group-sm form-group my-custom-select" data-toggle="tooltip" data-placement="left" title="Role">
+                    <div class="input-group-prepend">
+                      <i class="input-group-text fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                    <select id="session_end_id" class="custom-select custom-select-sm c-end_session">
+                        <option value="" disabled selected>Select Start Month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                  </div>
+                 
+
+                  <div class="col md-12 ml-4">
+                    <div class="custom-control custom-checkbox session-select-all">
+                      <!-- <input type="checkbox" checked="" disabled="" class="custom-control-input" id="sess-check-all">
+                      <label class="custom-control-label" for="sess-check-all">Select All Classes</label> -->
+                    </div>
+                  </div>
+                </div><!-- End Card Row -->
+                <a href="#" class="btn btn-primary ml-4 mt-4 submit-session">Submit</a>
+
+
+
+              </div><!-- End Card Body -->
+            </div>
+          </div><!-- End Subject Tab -->
+          <!-- Attendance Tab -->
+          <div class="tab-pane fade" id="nav-attendance" role="tabpanel" aria-labelledby="nav-attendance-tab">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-primary pos-rel"> Mark Attendance 
+                  <span class="pos-abs att-state-toggle" style="right:0">
+                    <span class="grey-txt" style="font-size:75%;">Toggle State:</span>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-outline-dark btn-sm font-weight-bold light-green-txt att-p-toggle">
+                        <input type="radio" name="options" id="option1" autocomplete="off"> P
+                      </label>
+                      <label class="btn btn-outline-dark btn-sm font-weight-bold red-txt att-a-toggle">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> A
+                      </label>
+                      <label class="btn btn-outline-dark btn-sm font-weight-bold att-reset-toggle d-none">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> <i class="fa fa-refresh"></i>
+                      </label>                      
+                    </div>                   
+                  </span>
+                </h5>
+                <div class="row">
+                  
+                  <div class="col-sm-4 input-group input-group-sm form-group">
+                    <div class="input-group-prepend">
+                      <i class="input-group-text fa fa-calendar" aria-hidden="true"></i>
+                    </div>
+                    <input class="form-control" type="text" name="date" id="att-date" placeholder="Select Date">
+                  </div>
+
+                  <div class="col-lg-12">
+                    <table class="table table-bordered table-hover table-sm">
+                      <thead>
+                        <tr>
+                          <th class="text-center">Sr.No.</th>
+                          <th class="text-center">Roll.No.</th>
+                          <th>Student</th>
+                          <th class="text-center">Mark Attendance</th>
+                        </tr>
+                      </thead>
+                      <tbody class="att-tbody"></tbody>
+                    </table>
+                  </div>
+                  <div class="col-lg-12">
+                    <button type="button" class="btn btn-primary submit-attendance">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Attendance Tab -->
+          </div>
+
+        </div><!-- End Tab-Content -->
+
+      </div>
+      <div class="col col-md-12 err-info"></div>
+    </div>
+  </div>
+  <script>
+    var ic_id = "{{ic_id}}";
+    var logged_user_id = "{{user.id}}";
+    var logged_institute = "{{user_info.institute_info.0.institute.id}}";
+    var profiling_urls = {
+      'addsession':ip+"class_user_profiling:session",
+    }
+
+    $(document).ready(function(){
+        // $('.append-classes,.err-info').empty();
+        // $.ajax({
+        //     url: '/profiling/class-info/{{dep_id}}',
+        //     method: "GET",
+        //     data:{}
+        // }).done(function(resp) {
+        //   var d = '', class_map = {};
+        //     if(!isEmpty(resp.data)){
+        //       $.each(resp.data,function(index,value){
+        //         d+= '<div class="card">'
+        //               +'<h6 class="card-title pl-3 py-2 bg-dark text-white text-truncate">'+index+'</h6>'
+        //               +'<div class="card-body">'
+        //                 +'<ul class="list-group">'
+        //                   +'<li class="list-group-item d-flex justify-content-between align-items-center p-2">Total Student\'s<span class="badge badge-primary">0</span></li>'
+        //                   +'<li class="list-group-item d-flex justify-content-between align-items-center p-2">Total Teacher\'s<span class="badge badge-primary">0</span></li>'
+        //                 +'</ul>'
+        //               +'</div>'
+        //               +'<div class="card-footer px-1 py-1">';
+        //               $.each(value,function (key,val) {
+        //                 d+='<a href="#" class="btn btn-outline-dark btn-sm py-1 mr-1" style="border-color:#ccc !important">'+key+'</a>';
+        //               });
+        //               d+='</div>'
+        //             +'</div>';
+        //       });
+        //       $('.append-classes').html(d);
+        //     }else{
+        //       $('.err-info').html('<div class="alert alert-info" role="alert"><h4 class="alert-heading">Oops...</h4><p>No classes were found please <a href="#" class="alert-link">click here</a> to add new classes!<p></div>');
+        //     }
+        // }).fail(function(err) {
+        //   var msg = "Oops something went wrong!!!";
+        //   if (err.responseJSON) {
+        //     console.log(err.responseJSON);
+        //     // (err.responseJSON.non_field_errors) ? msg = err.responseJSON.non_field_errors.join():false;
+        //   }
+        //   myToast(msg,{color:'danger',duration:2000});
+        // });
+    });
+    var picker1 = new Pikaday({field: document.getElementById('att-date'),format: 'YYYY-MM-DD'});
+  </script>
+  <script src="static/js/dpy_classinfo.js"></script>

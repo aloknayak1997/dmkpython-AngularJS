@@ -1,0 +1,383 @@
+{% extends 'base.html' %} {% block title %} HR Management {% endblock %} {% block content %} {% load static %}
+<link rel="stylesheet" href="static/css/hr_style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+    crossorigin="anonymous">
+<style>
+    div.block {
+        box-shadow: 1px 1px 20px -7px;
+        padding: 27px;
+        margin-bottom: 1%;
+    }
+
+    .bar {
+        box-shadow: 1px 1px 5px -2px;
+        padding: 32px 38px;
+    }
+
+    input{
+        width: 100%;
+    }
+
+    div#add {
+        transform: scale(2.2);
+        margin: 17px 0 0 31px;
+        float: right;
+    }
+
+    div.tab {
+        background: #d0cfcf;
+        border-radius: 20px;
+        padding: 5px;
+        display: inline-flex;
+    }
+
+    .close:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    .close {
+        right: 32px;
+        width: 32px;
+        height: 32px;
+        float: none;
+        opacity: 0.3;
+    }
+
+    i.far.fa-times-circle {
+        padding: 4px;
+    }
+
+    .close {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        opacity: .5;
+    }
+    .input-feilds{
+        margin: 4%;
+    }
+</style>
+<!-- <div class="data-head">
+    <span>Add Employe</span>
+</div> -->
+<form method="POST" class="data">
+    {% csrf_token %}
+
+    <span class="data-head">Basic Details</span>
+    <div class="block">
+        <table>
+            <tr>
+                <td>
+                        <div class="input-feilds">
+                                <span class="fa-icons">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                
+                                <input class="input" id="fname" placeholder="First Name">
+                        </div>
+                </td>
+                <td>
+                        <div class="input-feilds">
+                                <span class="fa-icons">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                
+                                <input class="input" id="mname" placeholder="Middle Name">
+                        </div>
+                
+                </td>
+                <td>
+                        <div class="input-feilds">
+                                <span class="fa-icons">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            <input class="input" id="lname" placeholder="Last Name">
+                        </div>
+                </td>
+            </tr>
+            <tr>
+                    <td>
+                            <div class="input-feilds">
+                                    <span class="fa-icons">
+                                        <i class="fas fa-at"></i>
+                                    </span>
+                                    <input id="email" class="input" type="email" placeholder="Email">
+                                </div>
+                    </td>
+                    <td>
+                            <div class="input-feilds">
+                                    <span class="fa-icons">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </span>
+                                    <input id="mobno" maxlength="10" minlength="10" class="input" type="text" onkeypress="validate(event)" placeholder="Mobile Number">
+                                </div>
+                    
+                    </td>
+                    <td>
+                            <div class="input-feilds">
+                                    <span class="fa-icons">
+                                        <i class="fas fa-user"></i>
+                                    </span>                            
+                                <select id="gender" class="input">
+                                    <option selected disabled hidden>Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                            <div class="input-feilds">
+                                    <span class="fa-icons">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                    </span>
+                    
+                                <select id="desig" class="input">
+                                    <option selected disabled hidden>Designation</option>
+                                    <option role="3" value="Teaching Staff">Teaching Staff</option>
+                                    <option role="4" value="Non-Teaching Staff">Non-Teaching Staff</option>
+                                    <option role="5" value="Part-time Staff">Office Associate</option>
+                                    <option role="6" value="House Keeping Staff">House Keeping Staff</option>
+                                </select>
+                            </div>
+                    </td>
+                    <td>
+                            <div class="input-feilds">
+                                    <span class="fa-icons">
+                                        <i class="fas fa-building"></i>
+                                    </span>
+                    
+                                <select id="depart" class="input">
+                                    <option selected disabled hidden>Department</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Accounts">Accounts</option>
+                                    <option value="Teaching">Teaching</option>
+                                </select>
+                            </div>
+                    </td>
+                    <td>
+                            <div class="in-feilds">
+                                    <!-- <span style="margin-bottom:2px; font-size: 11px;">Date of Join</span> -->
+                                    <div class="input-feilds">
+                                        <span class="fa-icons">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                        <input style="width:100%;" id="date" placeholder="Date Of Birth..." oninput="this.className = ''" class="" name="date_of_birth" type="date">
+                                    </div>
+                                </div>
+                    </td>
+                </tr>
+        </table>
+    </div>
+
+    <div class="block">
+        <div class="bar">
+
+            <div class="input-feilds">
+                <span class="fa-icons">
+                    <i class="fas fa-mobile-alt"></i>
+                </span>
+                <select id="leavename" class="input">
+                    <option selected disabled hidden>Select Leave</option>
+                    <option data-id="casual_leaves" value="Casual leaves">Casual leaves</option>
+                    <option data-id="paid_leaves" value="Paid leaves">Paid leaves</option>
+                    <option data-id="sick_leaves" value="Sick leaves">Sick leaves</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="input-feilds other" style="margin: 2%; display:none;">
+                <span class="fa-icons">
+                    <i class="fas fa-mobile-alt"></i>
+                </span>
+                <input id="otherleavename" maxlength="10" minlength="10" class="input" type="text" placeholder="Leave Name"> </input>
+            </div>
+            <div class="input-feilds " style="margin: 2%;">
+                <span class="fa-icons">
+                    <i class="fas fa-mobile-alt"></i>
+                </span>
+                <input id="leavenum" maxlength="20" class="input" type="text" onkeypress='validate(event)' placeholder="Number of Leaves"> </input>
+            </div>
+            <div id="add">
+                <i class="fas fa-plus-circle"></i>
+            </div>
+            <div id="leave_tab"></div>
+        </div>
+    </div>
+    <input style="width:100px;" id="save" type="button" value="Add" />
+</form>
+
+
+<script>
+    var fulldate = '', desig = '', role = '', depart = '', gender = '', leavename = '', leavenameslect = '', leavenum = '';
+        
+    function validate(evt) {
+        var theEvent = evt || window.event;
+
+        // Handle paste
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+            // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+    $("#date").change(function () {
+        var date = new Date($('#date').val());
+        day = date.getDate();
+        month = date.getMonth() + 1;
+        year = date.getFullYear();
+        fulldate = [year, month, day].join('-');
+    });
+    $("select#leavename").change(function () {
+        leavenameslect = $("#leavename option:selected").val();
+        if (leavenameslect == "Others") {
+          $('.other').css('display', 'inline-flex');
+        }
+        if (leavenameslect != "Others") {
+          $('.other').css('display', 'none');
+        }
+    });
+    $("select#desig").change(function () {
+        desig = $("#desig option:selected").val();
+        role = $("#desig option:selected").attr('role');
+    });
+    $("select#depart").change(function () {
+        depart = $("#depart option:selected").val();
+    });
+    $("select#gender").change(function () {
+        gender = $("#gender option:selected").val();
+    });
+
+    $('#add').click(function () {
+        var add = true;
+        if (leavenameslect == "Others") {
+            leavename = $('#otherleavename').val();
+        }
+        else {
+            leavename = leavenameslect;
+        }
+        leavenum = $('#leavenum').val();
+        var namevalue, numvalue;
+        var ldata = [];
+        var tabs = document.getElementsByClassName('tab');
+        for (i = 0; i < tabs.length; i++) {
+            var name = tabs[i].getElementsByClassName('name');
+            var num = tabs[i].getElementsByClassName('num');
+            for (j = 0; j < name.length; j++) {
+                namevalue = name[j].innerHTML;
+                numvalue = num[j].innerHTML;
+                ldata.push(namevalue);
+                ldata.push(numvalue);
+            }
+        }
+        console.log(ldata);
+        console.log(leavename, leavenum);
+        for (var i = 0, len = ldata.length; i < len; i++) {
+            if (ldata[i] == leavename) {
+                //2 exists
+                add = false;
+                myToast("You have already added this leave !!", { color: 'danger' });
+                break;
+            }
+        }
+        html = "<div class='tab'>";
+        html += "<span class='name'>" + leavename + "</span>";
+        html += "<span class='num'>" + leavenum + "</span>";
+        html += "<i class='far fa-times-circle'></i>";
+        html += "</div>";
+        if (add == true) {
+            $("#leave_tab").append(html);
+        }
+
+    });
+
+    $(document).on('click', '.tab, i.far.fa-times-circle', function () { $(this).remove(); });
+
+    $('#save').click(function () {
+        var tabs = document.getElementsByClassName('tab');
+        var fname = $('#fname').val();
+        var mname = $('#mname').val();
+        var lname = $('#lname').val();
+        var mobno = $('#mobno').val();
+        var email = $('#email').val();
+        // var salary = $('#salary').val();
+        var data = [];
+        // data.push(fname, mname, lname, mobno, email, fulldate, desig, depart, gender, salary);
+        data.push(fname, mname, lname, mobno, email, fulldate, desig, depart, gender, role);
+        console.log(data);
+        if (fname == '' || mname == '' || mobno == '' || email == '' || gender == '') {
+            myToast("Please Enter Complete Details!!", { color: 'danger' });
+        }
+        else {
+
+            $.ajax({
+                url: 'insert_emp/',
+                type: 'POST',
+                headers: { "X-CSRFToken": getCookie("csrftoken") },
+                enctype: "multipart/form-data",
+                data: {
+                    'studentData': data,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.Status) {
+                        var empid = data.empid;
+                        console.log(empid)
+                        myToast("Employee Added Successfully !!", { color: 'success' });
+                        for (i = 0; i < tabs.length; i++) {
+                            var name = tabs[i].getElementsByClassName('name');
+                            var num = tabs[i].getElementsByClassName('num');
+                            for (j = 0; j < name.length; j++) {
+                                var namevalue = name[j].innerHTML;
+                                var numvalue = num[j].innerHTML;
+                                var data = [];
+                                data.push(empid, namevalue, numvalue);
+                                console.log(data);
+                                if (empid == '' && namevalue == '' && numvalue == '') {
+                                    alert("Enter details");
+                                    myToast("Please Enter Complete Details!!", { color: 'danger' });
+                                }
+                                else {
+
+                                    $.ajax({
+                                        url: 'insert_leave/',
+                                        type: 'POST',
+                                        headers: { "X-CSRFToken": getCookie("csrftoken") },
+                                        enctype: "multipart/form-data",
+                                        data: {
+                                            'studentData': data,
+                                        },
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            if (data.Status) {
+                                                myToast("Leave Successfully Added !!", { color: 'success' });
+                                            }
+                                            else {
+                                                myToast(data.Message, { color: 'danger' });
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        myToast(data.Message, { color: 'danger' });
+                    }
+                }
+            });
+        }
+
+    });
+
+
+</script> {% endblock %}

@@ -1,0 +1,314 @@
+<style>
+  .fee {
+    display: inline-flex;
+    margin: 15px;
+    padding: 5px;
+    box-shadow: 1px 13px 30px -11px #0000008f, -1px 4px 38px -10px #0000009c;
+    border-radius: 20px;
+    color: #fff;
+    background: #49a0ae;
+  }
+
+  .fee-tab {
+    margin: 3px;
+  }
+
+  .accordion {
+    background-color: #fff;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+
+  .active1,
+  .accordion:hover {
+    background-color: #cccccc2b;
+  }
+
+  .accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+
+  .active1:after {
+    content: "\2212";
+  }
+
+  .panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+</style>
+<div style="margin-bottom: -20px">
+  <div class="" style="margin-left: 10px">
+    <a class="btn-floating waves-effect waves-light title-back-btn" onclick="window.history.back();" onmouseover="" style="cursor: pointer;">
+      <img src="/media/icons8-left-64.png" style="height: 45px;width: 45px; margin-bottom:5px;"> </a>
+    <span class="grey-text text-darken-2" style="font-size: 1.64rem;line-height: 52px; margin-left: 50px;">Fees Types</span>
+  </div>
+</div>
+<hr>
+
+<div class="col s12 m12 l12 padding-right-0 " style="padding-bottom:10%;">
+
+  <div class="table">
+    <div class="card lighten-5 card_align_left">
+      <div class="card-content white-text list_view">
+        <div style="display: inline; float: left;height: 40px;margin-top: 10px">
+
+          <span id="fee_wise" style="cursor: pointer; font-size: 22px;margin-left: 100px;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fees Wise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </span>
+        </div>
+
+        <div style="display: inline;float: right;height: 40px;margin-top: 10px">
+          <span id="section_wise" style="cursor: pointer; font-size: 22px;margin-right: 100px;  ">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Class Wise &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </span>
+        </div>
+      </div>
+    </div>
+    <br>
+    <!--##########################################################
+        div fees wise main div content
+        ##############################################################-->
+    <div class="card lighten-5 card_align_left" id="div_fee_wise">
+      <div class="card-content white-text list_view">
+        <!-- <h5>Fees Wise</h5> -->
+        <div style="width: 100%;height: 100%">
+
+
+          </ul>
+          <!-- </tbody>
+                </table> -->
+        </div>
+      </div>
+    </div>
+
+    <!--##########################################################
+        div section wise main div content
+        ##############################################################-->
+
+    <div class="card lighten-5 card_align_left" id="div_section_wise">
+      <div class="card-content white-text list_view">
+
+        <div id="class-wise" style="width: 100%;height: 100%">
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+
+    //  var classes = [];
+    //   $.ajax({
+    //     type: "GET",
+    //     url: ip + "/fees_management/add_fee/",
+    //     headers: { "Authorization": g_auth.key },
+    //     data: {
+    //       inst_classes: classes,
+    //       id: g_auth.institute_id,
+    //     },
+    //     success: function (response) {
+    //       console.log(response);
+    //       temp = response.data;
+    //       //--Class Wise--
+    //       var html = '';
+    //       $.each(temp, function (i, classes) {
+    //         console.log(classes);
+    //         html += "<div class='one-class'><div class='accordion'>Class " + classes.class_details.standard + classes.class_details.division + "</div>";
+    //         html += "<div class='panel'>"
+    //         $.each(classes, function (i, fees) {
+              // if(i=='class_details'){
+              //   //do nothing
+              // }
+              // else{
+              //   html += "<div class='fee'>";
+              //   html += "<div class='tab'>" + fees.display_name + "</div>";
+              //   html += "<div class='tab'>Amount  " + fees.amount + "</div>";
+              //   html += "</div>";
+              // }
+    //         });
+    //         html += "</div>";
+    //         html += "</div>";
+    //       });
+    //       $('#class-wise').append(html);
+    //       //--Fee Wise--
+    //       var acc = document.getElementsByClassName("accordion");
+    //       var i;
+    //       for (i = 0; i < acc.length; i++) {
+    //         acc[i].addEventListener("click", function () {
+    //           this.classList.toggle("active1");
+    //           var panel = this.nextElementSibling;
+    //           if (panel.style.maxHeight) {
+    //             panel.style.maxHeight = null;
+    //           } else {
+    //             panel.style.maxHeight = panel.scrollHeight + "px";
+    //           }
+    //         });
+    //       }
+    //       myToast("Success !!", { color: 'success' });
+    //     },
+    //     error: function (response) {
+    //       alert('ERROR');
+    //       myToast(response.message, { color: 'danger' });
+    //       console.log(response);
+    //     },
+    //   });
+    $(document).ready(function () {
+      $("#div_fee_wise").prop('hidden', false);
+      $("#div_section_wise").prop('hidden', true);
+      $('#fee_wise').css('border-bottom', '2px solid black')
+      $('.collapsible-body').prop('hidden', true);
+      $('.edit_amount').prop('hidden', true);
+      $('.edit_fee_submit').prop('hidden', true);
+      $('.edit_fees_name').prop('hidden', true);
+    });
+
+    $("#section_wise").click(function () {
+      $("#div_section_wise").prop('hidden', false);
+      $("#div_fee_wise").prop('hidden', true);
+
+      $('#section_wise').css('border-bottom', '2px solid black');
+      $('#fee_wise').css('border-bottom', 'none');
+
+    });
+
+    $("#fee_wise").click(function () {
+      $("#div_section_wise").prop('hidden', true);
+      $("#div_fee_wise").prop('hidden', false);
+
+      $('#section_wise').css('border-bottom', 'none');
+      $('#fee_wise').css('border-bottom', '2px solid black');
+
+    });
+
+    $(".collapsible-header").click(function () {
+      if ($(this).parent('li').attr("class") == "active") {
+        $(this).parent('li').removeClass();
+        $(this).closest('li').children('.collapsible-body').prop('hidden', true);
+      }
+      else {
+        $(".collapsible-header").each(function () {
+          if ($(this).parent('li').attr("class") == "active") {
+            $(this).parent('li').removeClass();
+            $(this).closest('li').children('.collapsible-body').prop('hidden', true);
+          }
+        });
+        $(this).parent('li').addClass("active");
+
+        $(this).closest('li').children('.collapsible-body').prop('hidden', false);
+        $(this).closest('li').children('.edit_amount').prop('hidden', true);
+        $(this).closest('li').children('.edit_fee_submit').prop('hidden', true);
+        $(this).closest('li').children('.edit_fees_name').prop('hidden', true);
+      }
+    });
+
+    $('.edit_fee_submit').click(function () {
+      var formData = [];
+      var url = ip + "fees_management/fee_types";
+      var fees_type_id = $(this).closest('li').children('.fee_id_label').text();
+      var fees_name = $(this).closest('li').children('.edit_fees_name').val();
+      var fees_amount = $(this).closest('li').children('.edit_amount').val();
+      if (fees_amount <= 0) {
+        myToast("please eneter proper fees amount.", { color: 'danger' });
+        return;
+      }
+
+      formData.push(fees_type_id);
+      formData.push(fees_name);
+      formData.push(fees_amount);
+      console.log(formData);
+
+      $.ajax({
+        url: url,
+        type: "POST",
+        headers: { "X-CSRFToken": getCookie("csrftoken") },
+        data: {
+          'formData': formData,
+        },
+        success: function (response) {
+          console.log(response);
+          myToast("Successfully Updated fee !", { color: 'success' });
+          location.reload();
+        },
+        error: function (response) {
+          myToast("error occurred, you may have entered icorrect amount!", { color: 'danger' });
+          console.log(response);
+        },
+      });//End of ajax request
+
+    });
+
+
+
+    $('.edit_fees').click(function () {
+      $(".collapsible-header").each(function () {
+        if ($(this).parent('li').attr("class") == "active") {
+          $(this).parent('li').removeClass();
+          $(this).closest('li').children('.collapsible-body').prop('hidden', true);
+          $(this).closest('li').children('.edit_amount').prop('hidden', true);
+          $(this).closest('li').children('.edit_fee_submit').prop('hidden', true);
+          $(this).closest('li').children('.edit_fees_name').prop('hidden', true);
+        }
+      });
+      $(this).closest('li').children('.edit_amount').prop('hidden', false);
+      $(this).closest('li').children('.edit_fee_submit').prop('hidden', false);
+      $(this).closest('li').children('.edit_fees_name').prop('hidden', false);
+    });
+
+
+    $(document).ready(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    /////////////////////////////////////////////////////////////////////////////checking for number input in text box amount /////////////////// /////////////////////////////////////////////////////////////////////
+    $(document).ready(function () {
+      $(".amount").forceNumeric();
+      $(".edit_amount").forceNumeric();
+    });
+
+    // forceNumeric() plug-in implementation
+    jQuery.fn.forceNumeric = function () {
+      return this.each(function () {
+        $(this).keydown(function (e) {
+          var key = e.which || e.keyCode;
+
+          if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+            // numbers   
+            key >= 48 && key <= 57 ||
+            // Numeric keypad
+            key >= 96 && key <= 105 ||
+            // comma, period and minus, . on keypad
+            key == 190 || key == 188 || key == 109 || key == 110 ||
+            // Backspace and Tab and Enter
+            key == 8 || key == 9 || key == 13 ||
+            // Home and End
+            key == 35 || key == 36 ||
+            // left and right arrows
+            key == 37 || key == 39 ||
+            // Del and Ins
+            key == 46 || key == 45)
+            return true;
+
+          return false;
+        });
+      });
+    }//end of number check
+  </script>
+</div>

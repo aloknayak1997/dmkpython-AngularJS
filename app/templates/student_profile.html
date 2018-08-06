@@ -1,0 +1,477 @@
+<script src="static/js/student_profile.js"></script>
+<div id="main_container">
+	<style scoped>
+		@import "static/css/student_profile.css";
+	</style>
+
+	<div style="margin-bottom: -20px" onload="myFunction()">
+		<div class="" style="margin-left: 10px">
+			<a class="btn-floating waves-effect waves-light title-back-btn" onclick="window.history.back();" onmouseover="" style="cursor: pointer;">
+				<img src="/media/icons8-left-64.png" style="height: 45px;width: 45px; margin-bottom:5px;">
+
+			</a>
+			<span class="grey-text text-darken-2" style="font-size: 1.64rem;line-height: 52px; margin-left: 50px;">Student Profile</span>
+		</div>
+	</div>
+	<hr>
+	<div class="col s12 active">
+		<div class="card grey lighten-5" style="background-color: white !important">
+			<div class="card-content" style="padding:5px 24px;">
+				<div class="row">
+					<form class="col s12" style="padding:0;">
+						<div class="edit_buttons hidden" style="float:right;">
+
+							<span style="cursor: pointer; color: white">
+								<a class=" btn-info btn-lg" id="edit_personal">
+									<span class="fa fa-edit"></span>
+								</a>
+							</span>
+
+							<span style="cursor: pointer; color: white">
+								<a class=" btn-info btn-lg" id="cancel_personal">
+									<span class="fa fa-close"></span>
+								</a>
+								&nbsp;&nbsp;&nbsp;
+								<a class=" btn-info btn-lg" id="save_personal">
+									<span class="fa fa-thumbs-o-up"></span>
+								</a>
+							</span>
+
+						</div>
+						<!-- ................................................... -->
+						<div id="personal">
+							<span class="card-title blue-text text-darken-2">Primary Details</span>
+							<br>
+							<br>
+
+							<div class="input-field col s12 m3 l3" id="student_img_div" style="margin-bottom:10%;">
+
+								<p style="margin-bottom: 5px;">
+									<a href="#" class=" btn-info btn-lg" style="">
+										<span class="fa fa-camera"></span>
+									</a>
+								</p>
+								<!-- https://digimkey.com/dmk/assets/images/student_placeholder.jpg -->
+
+								<img src="/media/{{form.image}}" alt="student_image" style="width: 150px;height:120px;" id="File_image" data-src="https://digimkey.com/dmk/assets/images/student_placeholder.jpg">
+								<br>
+								<div class="file-field input-field">
+									<div class="btn" style="line-height: 2rem;padding: 0px 0.5rem;height:2rem;font-size:0.8em;width: 150px">
+										<!-- <span >Upload image</span> -->
+										<label class="custom-file-upload" for="image">Upload Image</label>
+										<input type="file" id="image" name="image">
+									</div>
+									<style type="text/css">
+										input[type="file"] {
+											display: none;
+										}
+
+										.custom-file-upload {
+											/*border: 1px solid #ccc;*/
+											/*display: inline-block;*/
+											/*padding: 6px 6px;*/
+											cursor: pointer;
+											color: white;
+											font-size: 16px;
+											margin-right: 10px;
+										}
+									</style>
+									<div class="file-path-wrapper" style="visibility: hidden;">
+										<input class="file-path validate" type="text" style="border-bottom: none;">
+									</div>
+								</div>
+							</div>
+
+							<div class="input-field col s12 m3 l3">
+								<label for="first_name">First Name
+									<span class="mandatory"> * </span>
+								</label>
+								<input id="first_name" name="first_name" type="text" class="validate black-text disabled_toggle" value="{{form.first_name}}"
+								 required placeholder="{{form.first_name}}">
+							</div>
+
+							<div class="input-field col s12 m3 l3">
+								<label for="middle_name">Middle Name</label>
+								<input id="middle_name" name="middle_name" type="text" class="validate black-text disabled_toggle" value="{{form.middle_name}}"
+								 placeholder="{{form.middle_name}}">
+							</div>
+
+							<div class="input-field col s12 m3 l3">
+								<label for="last_name">Last Name
+									<span class="mandatory"> * </span>
+								</label>
+								<input id="last_name" name="last_name" type="text" class="validate black-text disabled_toggle" value="{{form.last_name}}"
+								 required placeholder="{{form.last_name}}">
+							</div>
+
+							<div class="input-field col s12 m3 l3">
+								<label for="email">Email
+									<span class="mandatory"> * </span>
+								</label>
+								<input id="email" name="email" type="text" class="validate black-text disabled_toggle" value="{{form.email}}" placeholder="{{form.email}}">
+							</div>
+
+							<div class="input-field col s12 m3 l3">
+								<label for="mobile">Mobile
+									<span class="mandatory"> * </span>
+								</label>
+								<input id="mobile" name="mobile" type="text" class="validate black-text disabled_toggle" value="{{form.mobile}}" required
+								 placeholder="{{form.mobile}}">
+							</div>
+
+
+							<div class="input-field col s12 m3 l3">
+								<label for="Dob">Date Of Birth
+									<span class="mandatory"> * </span>
+								</label>
+								<input id="dob" name="dob" type="text" class="datepick" value="{{form.dob.year}}-{{form.dob.month}}-{{form.dob}}" required
+								 placeholder="{{form.dob.date}}">
+							</div>
+
+							<div class="input-field col s12 m3 l3">
+								<label for="Dob">Addmission Date</label>
+								<input name="date_joined" type="text" class="datepick" id="date_of_addmission" value="{{form.date_joined.year}}-{{form.date_joined.month}}-{{form.date_joined.date}}"
+								 required placeholder="{{form.date_joined.date}}">
+							</div>
+
+							<div class="input-field col s12 m3 l3">
+								<label for="mother_name">Mother's Name</label>
+								<input name="mother_name" id="mother_name" type="text" class="validate black-text disabled_toggle" value="{{form.mother_name}}"
+								 placeholder="{{form.mother_name}}">
+							</div>
+
+
+
+							<div class="input-field col s12 m3 l3">
+								<label for="religion">Religion</label>
+								<input id="religion" name="religion" type="text" class="validate black-text disabled_toggle" value="{{form.religion}}" placeholder="{{form.religion}}">
+							</div>
+
+							<div class="input-field col s12 m3 l3 black-text" style="margin-left: -221px">
+								<label>Gender
+									<span class="mandatory"> * </span>
+								</label>
+								<select id="gender" name="gender" required select disabled class="disabled_toggle">
+									<option value="" selected>Gender</option>
+									<option value="1" {% if form.gender=='1' %} selected {% endif %}>Male</option>
+									<option value="2" {% if form.gender=='2' %} selected {% endif %}>Female</option>
+								</select>
+							</div>
+
+							<div class="input-field col s12 m3 l3" style="margin-right: -1px">
+								<label for="caste">Caste</label>
+								<input id="caste" name="caste" type="text" class="validate black-text disabled_toggle" value="{{form.caste}}" placeholder="{{form.caste}}">
+							</div>
+
+
+
+							<div class="input-field col s12 m3 l3">
+								<label for="nationality">Nationality</label>
+								<input id="nationality" name="nationality" type="text" class="validate black-text disabled_toggle" value="{{form.nationality}}"
+								 placeholder="{{form.nationality}}">
+							</div>
+
+							<div class="input-field col s12 m3 l3  black-text">
+								<label>Blood Group </label>
+								<select name="blood_group" id="blood_group" required select disabled class="disabled_toggle">
+									<option value="" selected disabled>Blood Group</option>
+									<option value="A+" {% if form.blood_group=='A+' %} selected {% endif %}>A+</option>
+									<option value="A-" {% if form.blood_group=='A-' %} selected {% endif %}>A-</option>
+									<option value="B+" {% if form.blood_group=='B+' %} selected {% endif %}>B+</option>
+									<option value="B-" {% if form.blood_group=='B-' %} selected {% endif %}>B-</option>
+									<option value="AB+" {% if form.blood_group=='AB+' %} selected {% endif %}>AB+</option>
+									<option value="AB-" {% if form.blood_group=='AB-' %} selected {% endif %}>AB-</option>
+									<option value="O+" {% if form.blood_group=='O+' %} selected {% endif %}>O+</option>
+									<option value="O-" {% if form.blood_group=='O-' %} selected {% endif %}>O-</option>
+								</select>
+							</div>
+
+							<div class="input-field col s12 m3 l3">
+								<label for="place_of_birth">Place of Birth</label>
+								<input id="place_of_birth" name="place_of_birth" type="text" class="validate black-text disabled_toggle" value="{{form.place_of_birth}}"
+								 placeholder="{{form.place_of_birth}}">
+							</div>
+
+							<div class="input-field col s12 m3 l3">
+								<label for="address">Current Address</label>
+								<input id="address" name="address" type="text" class="validate black-text disabled_toggle" value="{{form.address}}" placeholder="{{form.address}}">
+							</div>
+
+
+							<div class="input-field col s12 m3 l3">
+								<label for="address2">Permanent Address</label>
+								<input id="address2" name="address2" type="text" class="validate black-text disabled_toggle" value="{{form.address2}}" placeholder="{{form.address2}}">
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<!--  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+		   -->
+			<script src="{% static 'js/edit_student_profile.js' %}"></script>
+			<script type="text/javascript">
+				$(document).ready(function () {
+
+					$("#first_name").prop('disabled', true);
+					$("#middle_name").prop('disabled', true);
+					$("#last_name").prop('disabled', true);
+					$("#email").prop('disabled', true);
+					$("#mobile").prop('disabled', true);
+					$("#dob").prop('disabled', true);
+					$("#religion").prop('disabled', true);
+					$("#caste").prop('disabled', true);
+					$("#adhar_no").prop('disabled', true);
+					$("#gender").prop('disabled', true);
+					$("#mother_name").prop('disabled', true);
+					$("#blood_group").prop('disabled', true);
+					$("#profile_file").prop('disabled', true);
+					$("#nationality").prop('disabled', true);
+					$("#place_of_birth").prop('disabled', true);
+					$("#date_of_addmission").prop('disabled', true);
+					$("#image").prop('disabled', true);
+					$("#address").prop('disabled', true);
+					$("#address2").prop('disabled', true);
+					$("#save_personal").prop('hidden', true);
+					$("#cancel_personal").prop('hidden', true);
+
+					// alert("hello");
+				});
+				$("#edit_personal").click(function () {
+					$("#first_name").prop('disabled', false);
+					$("#middle_name").prop('disabled', false);
+					$("#last_name").prop('disabled', false);
+					$("#email").prop('disabled', false);
+					$("#mobile").prop('disabled', false);
+					$("#dob").prop('disabled', false);
+					$("#date_of_addmission").prop('disabled', false);
+					$("#religion").prop('disabled', false);
+					$("#caste").prop('disabled', false);
+					$("#adhar_no").prop('disabled', false);
+					$("#gender").prop('disabled', false);
+					$("#mother_name").prop('disabled', false);
+					$("#blood_group").prop('disabled', false);
+					$("#profile_file").prop('disabled', false);
+					$("#nationality").prop('disabled', false);
+					$("#place_of_birth").prop('disabled', false);
+					$("#address").prop('disabled', false);
+					$("#address2").prop('disabled', false);
+					$("#image").prop('disabled', false);
+					$("#save_personal").prop('hidden', false);
+					$("#cancel_personal").prop('hidden', false);
+					$("#edit_personal").prop('hidden', true);
+
+					$('#first_name').parent().css('borer', '1px solid green')
+					// alert("hello");
+					$("#edit_admin").prop('disabled', true);
+				});
+
+				$("#cancel_personal").click(function () {
+					window.location.reload();
+				});
+
+				var picker1 = new Pikaday({ field: document.getElementById('date_of_addmission'), format: 'YYYY-MM-DD' });
+				var picker2 = new Pikaday({ field: document.getElementById('dob'), format: 'YYYY-MM-DD' });
+
+
+				$("#save_personal").click(function (e) {
+					e.preventDefault()
+					// check_errors();
+					var image = document.getElementById('image').files[0];
+					var url = ip+"dashboard/update_student_personal/id=form.id";
+					var usr = {};
+
+					$("#first_name,#last_name,#email,#middle_name,#mobile,#dob,#blood_group,#religion,#caste,#mother_name,#nationality,#place_of_birth,#address,#address2,#date_of_addmission").each(function () {
+						usr[$(this).attr('name')] = ($(this).val()) ? $(this).val() : null;
+					});
+
+					// usr['password'] = 123;
+					usr[$("#gender").attr('name')] = $("#gender option:selected").val();
+					usr[$("#blood_group").attr('name')] = $("#blood_group option:selected").val();
+
+					var formData = new FormData();
+					formData.append("user", JSON.stringify(usr));
+					formData.append("image", image);
+					console.log(formData[0])
+
+					$.ajax({
+						type: "post",
+						url: url,
+						contentType: false,
+						processData: false,
+						headers: { "X-CSRFToken": getCookie("csrftoken") },
+						data: formData,
+
+						success: function (response) {
+							console.log(response);
+							alert("successfully updated.");
+							location.reload();
+						},
+						error: function (response) {
+							console.log(response);
+						}
+
+					});
+				});
+
+			</script>
+		</div>
+		<br>
+		<!--.........................Other Details..................................................-->
+
+		<div class="card grey lighten-5" style="background-color: white !important">
+			<div class="card-content" style="padding:5px 24px;">
+				<div class="row" style="margin-bottom:0;">
+					<div class="col s12 m12 l12">
+						<div class="edit_buttons hidden" style="float:right;margin-right: -10px;">
+							<!-- <a class="btn-floating waves-effect waves-light blue cutom_btn edit_info">mode_edit</a> -->
+
+							<span style="cursor: pointer; color: white">
+								<a id="edit_institute" class=" btn-info btn-lg" id="edit_personal">
+									<span class="fa fa-edit"></span>
+								</a>
+							</span>
+
+							<span style="cursor: pointer; color: white">
+								<a id="cancel_institute" class=" btn-info btn-lg" hidden="true">
+									<span class="fa fa-close"></span>
+								</a>
+							</span>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="cursor: pointer; color: white">
+								<a id="save_institute" class=" btn-info btn-lg" hidden="true">
+									<span class="fa fa-thumbs-o-up"></span>
+								</a>
+							</span>
+						</div>
+						<span class="card-title blue-text text-darken-2">Institutional Details</span>
+						<br>
+						<br>
+						<!--..........................................-->
+						<div class="row">
+							<form class="col s12" style="padding:0;margin-bottom:0;">
+								<div class="input-field col s12 m6 l6">
+									<label for="roll_no">Roll No</label>
+									<input name="roll_no" id="roll_no" type="text" class="validate black-text disabled_toggle" value="{{user_class.roll_no}}"
+									 placeholder="{{user_class.roll_no}}">
+								</div>
+
+								<div class="input-field col s12 m6 l6">
+									<label>Student Class</label>
+									<select name="student_class" id="student_class" select class="disabled_toggle">
+										<option value="" selected disabled>Student Class</option>
+										<option value="{{class.id}}" {% if institute_class.id==c lass.id %} selected {% endif %}></option>
+									</select>
+								</div>
+
+								<!--#####################  for additional fields #################### -->
+
+								<div class="addition_field input-field col s12 m6 l6" id="addition_field">
+									<label for="{{additiona_field.key_name}}">{{additiona_field.name}}</label>
+
+									<input name="{{additiona_field.key_name}}" id="{{additiona_field.id}}" type="text" class="additional_field" value="{{UserAdditionalField.value}}"
+									 placeholder="{{UserAdditionalField.value}}">
+								</div>
+								<div class="addition_field input-field col s12 m6 l6">
+									<label for="{{additiona_field.key_name}}">{{additiona_field.name}}</label>
+									<input name="{{additiona_field.key_name}}" id="{{additiona_field.id}}" type="text" class="additional_field" value="{{UserAdditionalField.value}}"
+									 placeholder="{{UserAdditionalField.value}}">
+								</div>
+
+								<div class="addition_field input-field col s12 m6 l6" id="">
+									<label for="{{additiona_field.key_name}}">{{additiona_field.name}}</label>
+									<input name="{{additiona_field.key_name}}" id="{{additiona_field.id}}" type="text" class="additional_field" value="{{UserAdditionalField.value}}"
+									 placeholder="{{UserAdditionalField.value}}">
+								</div>
+								<script type="text/javascript">
+									$(document).ready(function () {
+
+										// $("#date_of_addmission").prop('disabled', true);
+										$("#mother_name").prop('disabled', true);
+										$("#roll_no").prop('disabled', true);
+										$("#gr_no").prop('disabled', true);
+										$("#communication_address").prop('disabled', true);
+										$("#permanent_address").prop('disabled', true);
+										$("#house").prop('disabled', true);
+										$("#special_quata").prop('disabled', true);
+										$("#student_type").prop('disabled', true);
+										$("#student_class").prop('disabled', true);
+										$(".additional_field").prop('disabled', true);
+										$("#section").prop('disabled', true);
+										$("#save_institute").prop('hidden', true);
+										$("#cancel_institute").prop('hidden', true);
+
+										// alert("hello");
+									});
+									$("#edit_institute").click(function () {
+										// $("#date_of_addmission").prop('disabled', false);
+										$("#mother_name").prop('disabled', false);
+										$("#roll_no").prop('disabled', false);
+										$("#gr_no").prop('disabled', false);
+										$("#communication_address").prop('disabled', false);
+										$("#permanent_address").prop('disabled', false);
+										$("#house").prop('disabled', false);
+										$("#special_quata").prop('disabled', false);
+										$("#student_type").prop('disabled', false);
+										$("#student_class").prop('disabled', false);
+										$("#section").prop('disabled', false);
+										$(".additional_field").prop('disabled', false);
+										$("#save_institute").prop('hidden', false);
+										$("#cancel_institute").prop('hidden', false);
+										$("#edit_institute").prop('hidden', true);
+
+										// alert("hello");
+										$("#edit_personal").prop('disabled', true);
+									});
+
+									$("#cancel_institute").click(function () {
+										window.location.reload();
+									});
+
+									$("#save_institute").click(function () {
+
+										var url = ip + "dashboard/update_student_other/id=form.id";
+										var formData = {};
+										var class_details = {};
+										class_details['roll_no'] = $("#roll_no").val();
+										class_details['student_class'] = $("#student_class option:selected").val();
+										// alert($("#student_class option:selected").val());
+										var additional_fields = {};
+										$(".addition_field").each(function () {
+											additional_fields[$(this).children('input').attr('name')] = ($(this).children('input').val()) ? $(this).children('input').val().trim() : null;
+											alert($(this).children('input').val());
+										});
+										console.log(additional_fields);
+										var formData = new FormData();
+										formData.append("class_details", JSON.stringify(class_details));
+										formData.append("additional_fields", JSON.stringify(additional_fields));
+
+										console.log(formData)
+										$.ajax({
+											type: "post",
+											url: url,
+											contentType: false,
+											processData: false,
+											headers: { "X-CSRFToken": getCookie("csrftoken") },
+											data: formData,
+											success: function (response) {
+												console.log(response);
+												alert("successfully updated.");
+												location.reload();
+											},
+											error: function (response) {
+												console.log(response);
+											}
+
+										});
+									});
+								</script>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

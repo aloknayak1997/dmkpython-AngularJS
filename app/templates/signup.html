@@ -1,0 +1,199 @@
+{% include 'header.html' %}
+{% load static from staticfiles %}
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- <form class="site-form" id="onboarding-form" action="{% url 'onboarding:signup' %}" method="post" role="form" autocomplete="off" novalidate> -->
+          {% csrf_token %}
+          <nav class="d-none">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Institute Details</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Admin Details</a>
+            </div>
+          </nav>
+          
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              
+              <div class="row">
+                <div class="col-md-6 mx-auto">
+                  <div class="card">
+                    <div class="card-header bg-primary text-white">
+                      <h3 class="mb-0 my-2">Sign Up</h3>
+                    </div>
+                    <div class="card-body" id="form-tab-1">
+
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="name" maxlength="100" required="" id="id_name" placeholder="Name">
+                        <div class="invalid-feedback">Field is required!</div>
+                      </div>
+
+                      <div class="form-group">
+                        <input class="form-control" type="email" name="institute_email" maxlength="100" required="" id="id_institute_email" placeholder="Email">
+                      </div>
+                      
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="contact" maxlength="12" required="" id="id_contact" placeholder="Contact">
+                      </div>
+                      
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="board" maxlength="100" required="" id="id_board" placeholder="Board">
+                      </div>
+                      
+                      <div class="form-group">
+                        <select class="custom-select" name="nature" required="" id="id_nature" placeholder="Nature">
+                          <option value="" selected="">Choose Nature</option>
+                          <option value="1">School</option>
+                          <option value="2">College</option>
+                        </select>
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="custom-file">
+                          <input class="custom-file-input" type="file" name="logo" id="id_logo">
+                          <label class="custom-file-label" for="id_logo">Logo</label>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="custom-file">
+                          <input class="custom-file-input" type="file" name="school_image" id="id_school_image">
+                          <label class="custom-file-label" for="id_school_image">School Image</label>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="university" maxlength="100" id="id_university" placeholder="University">
+                      </div>
+                      
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="address" maxlength="110" required="" id="id_address" placeholder="Address">
+                      </div>
+                      
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="city" maxlength="20" id="id_city" placeholder="City">
+                      </div>
+                      
+                      <div class="form-group">
+                        <input class="form-control" type="number" name="pin_code" required="" id="id_pin_code" placeholder="code">
+                      </div>
+                      
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="state" maxlength="20" id="id_state" placeholder="State">
+                      </div>
+                      <button type="button" class="btn btn-primary" id="goto-next">Next</button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End Row -->
+            </div><!-- End Institute Details Tab -->
+
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <div class="row">
+                <div class="col-md-6 mx-auto">
+                  <div class="card">
+                    <div class="card-header bg-primary text-white">
+                      <h3 class="mb-0 my-2">Admin Details</h3>
+                    </div>
+                    <div class="card-body" id="form-tab-2">
+
+                      <!-- <div class="form-group">
+                        <input class="form-control" type="text" name="username" required="" maxlength="150" id="id_username" minlength="4" placeholder="Username">
+                      </div> -->
+
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="first_name" maxlength="75" id="id_first_name" required="" placeholder="First name">
+                      </div>
+
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="middle_name" maxlength="75" id="id_middle_name" placeholder="Middle name">
+                      </div>
+
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="last_name" maxlength="75" id="id_last_name" required="" placeholder="Last name">
+                      </div>
+
+                      <div class="form-group">
+                        <input class="form-control" type="email" name="email" maxlength="254" id="id_email" required="" placeholder="Email">
+                      </div>
+
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="mobile" maxlength="16" id="id_mobile" required="" placeholder="Mobile">
+                      </div>
+
+                      <div class="form-group">
+                        <div class="custom-file">
+                          <input class="custom-file-input" type="file" name="image" id="id_image">
+                          <label class="custom-file-label" for="id_image">Image</label>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <select class="custom-select" name="level" id="id_level" placeholder="User Level" required="">
+                          <option value="" selected="">Choose User Level</option>
+                          <option value="0">Owner</option>
+                          <option value="1">Director/Dean/Principal</option>
+                          <option value="2">HOD/Manager/Clerk</option>
+                          <option value="3">Teacher</option>
+                          <option value="4">Office Associate</option>
+                          <option value="5">House Keeping Staff</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <select class="custom-select" name="type" id="id_type" placeholder="User Type" required="">
+                         <option value="" selected="">Choose User Type</option>
+                          <option value="1">Teaching Staff</option>
+                          <option value="2">Non-Teaching Staff</option>
+                          <option value="3">Client</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <input class="form-control" type="text" id="id_date_of_joining" name="date_of_joining" placeholder="Date of Joining" required="">
+                      </div>
+
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="designation" maxlength="100" id="id_designation" required="" placeholder="Designation">
+                      </div>
+
+                      <div class="form-group">
+                        <input class="form-control" type="password" name="password" required="" id="id_password" placeholder="Enter password">
+                      </div>
+
+                      <div class="form-group">
+                        <input class="form-control" type="password" name="password2" required="" id="id_password2" placeholder="Confirm password">
+                      </div>
+
+                      <div class="form-group">
+                        <button type="button" class="btn btn-link float-left" id="goto-back">Back</button>
+                        <button id="onboard-institute" type="Submit" class="btn btn-success float-right" data-url="{% url 'onboarding:signup' %}">Submit</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End Row -->
+            </div><!-- End Admin Details Tab -->
+
+          </div><!-- End Tab Div -->
+        <!-- </form> -->
+
+      </div><!-- End Grid -->
+    </div><!-- End Row -->
+  </div><!-- End Container -->
+
+  <script src="{% static 'js/dpy_onboarding.js' %}"></script>
+  <script>
+  // $('#goto-next').on('click', function (e) {
+  //   e.preventDefault()
+  //   $('#nav-profile-tab').tab('show')
+  // });
+  $('#goto-back').on('click', function (e) {
+    e.preventDefault()
+    $('#nav-home-tab').tab('show')
+  });
+  var picker = new Pikaday({field: document.getElementById('id_date_of_joining'),format: 'YYYY-MM-DD'});
+  </script>
+</body>
+</html>

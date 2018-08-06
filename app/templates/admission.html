@@ -1,0 +1,380 @@
+<div style="display: inline-block;margin-bottom: -20px;">
+<a class="btn-floating waves-effect waves-light title-back-btn" onclick="window.history.back();" onmouseover="" style="cursor: pointer;display: inline-block;">
+            <img src="/media/icons8-left-64.png" style="height: 45px;width: 45px; margin-bottom:5px;">
+        </a>
+
+        <span class="grey-text text-darken-2" style="font-size: 1.64rem;line-height: 52px; margin-left: 50px;">Add Admission</span>
+</div>
+
+<hr>
+
+
+<div class="container-fluid">
+<div class="col s12 active">
+      <div class="card lighten-5">
+          <div class="card-content" style="padding:5px 24px;">
+            <div class="row">
+              <form class="col s12" style="padding:0;">
+
+
+    <span><h3>Aplicant's Info</h3></span>
+        <div class="row">
+
+            <div class="col-sm-4" >
+                <label for="pic">Selected Image</label>
+                <img src="/media/{{prospects.image}}" onerror="standby()" id="pic" style="height: 200px; width:200px;border: 1px solid" >
+                <!-- <input type="text" class="form-control" id="first_name"  name="first_name" placeholder="Enter Name" > -->
+            </div>
+                    <div class="col-sm-4" >
+                        </div>
+                    <div class="col-sm-4" >
+                        </div>
+            <div class="col-sm-4" >
+                <label for="first_name">First Name</label></label>
+                <input type="text" class="form-control" id="first_name"  name="first_name" placeholder="Enter Name" >
+            </div>
+            
+            <div class="col-sm-4" >
+                <label for="middle_name">Middle Name</label>
+                <input type="text" class="form-control" name="middle_name" id="middle_name" placeholder="Enter Middle Name" >
+            </div>
+
+            <div class="col-sm-4" >
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter Last Name" >
+            </div>
+
+            <div class="col-sm-4" >
+                <label for="dob">Date of Birth</label></label>
+                <div class="input-group-prepend" style="width: 100%;">
+                    <!-- <i class="input-group-text fa fa-calendar" style="font-size: 1.875rem;padding: .25rem .5rem;line-height: 0.5;" aria-hidden="true"></i> -->
+                         <input placeholder="Date Of Birth..." oninput="this.className = ''" class="form-control" name="dob" id="dob" type="date" style="width: 340px" >
+                   </div>
+                <!-- <input type="dob" class="form-control" id="dob" placeholder="Enter DOB" > -->
+            </div>
+
+             <div class="col-sm-4" >
+                <label for="image">Image</label></label>
+                <input type="file" class="form-control" id="image"  name="image" placeholder="Select Image" >
+            </div>
+
+            <div class="col-sm-4" >
+                    <label for="gender">Select Gender</label>
+                <select class="custom-select" name="gender" id="gender">
+                    <option value="" selected disabled>Gender</option>
+                    <option name="cycle" value="1">Male</option>
+                    <option value="2" name="cycle">Female</option>
+
+                </select>
+            </div>    
+    
+            <div class="col-sm-6" >
+                <label for="applicant_email">Applicant's Email</label>
+                <input type="text" class="form-control" id="applicant_email" name="applicant_email" placeholder="Enter email" >
+            </div>
+                
+            <div class="col-sm-6" >
+                <label for="applicant_phone">Applicant's Phone No</label></label>
+                <input type="phone" class="form-control" id="applicant_phone" name="applicant_phone" placeholder="Enter Phone" >
+            </div>
+                    
+            <div class="col-sm-6" >
+                <label for="caste">Caste</label>
+                <input type="text" class="form-control" id="caste" name="caste" placeholder="Enter Caste" >
+            </div>
+        
+            <div class="col-sm-6" >
+                <label for="nationality">Nationality</label>
+                <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Select Nationality" >
+            </div>
+
+            <div class="col-sm-6" >
+                <label for="aadhar_no">Aadhar No</label>
+                <input type="text" class="form-control" id="aadhar_no" name="aadhar_no" placeholder="Enter Aadhar No" >
+            </div>
+        
+            <!-- <div class="col-sm-6" >
+                <label for="nationality">Select Category</label>
+                <input type="text" class="form-control" id="email" placeholder="Select Nationality" >
+            </div> -->
+            <div class="col-sm-6" >
+                    <label for="category_id">Select Category</label>
+                <select class="custom-select" name="category_id" id="category_id">
+                    <option value="" selected disabled>Category</option>
+                    <option name="cycle" value="1">Genral</option>
+                    <option value="2" name="cycle">Obc</option>
+
+                </select>
+            </div>
+
+            <div class="col-sm-12" >
+                <label for="local_address">Address</label>
+                <input type="text-area" class="form-control" id="local_address" name="local_address" placeholder="Local Address" >
+            </div>
+
+            <div class="col-sm-12" >
+                <label for="permanent_address">Permanent Address</label>
+                <input type="text-area" class="form-control" id="permanent_address" name="permanent_address" placeholder="Permanent Address" >
+            </div>
+        </div>
+        <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <!--#########################################################################################################Parents Info#########################################################################################################################-->
+       
+
+<div style="padding: 10px 10px;margin: 20px 28px; background-color: white;    position: relative;display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;">
+
+        <h3>Parent's Info</h3>
+        <div class="row">
+            <div class="col-sm-6" >
+                <label for="fathers_name">Father's Name</label>
+                <input type="text" class="form-control" id="fathers_name" name="fathers_name" placeholder="Enter Father Name" >
+            </div>
+
+            <div class="col-sm-6" >
+                <label for="mothers_name">Mother's Name</label>
+                <input type="text" class="form-control" id="mothers_name" name="mothers_name" placeholder="Enter Mother Name" >
+            </div>
+
+            <div class="col-sm-6" >
+                <label for="parent_phone">Parent/Guardians Phone No</label>
+                <input type="text" class="form-control" id="parent_phone" name="parent_phone" placeholder="Enter Parent/Guardians Phone No" >
+            </div>
+
+            <div class="col-sm-6" >
+                <label for="parent_email">Parent/Guardians email</label>
+                <input type="text" class="form-control" id="parent_email" name="parent_email" placeholder="Enter Parent/Guardians email" >
+            </div>
+
+            <div class="col-sm-6" >
+                <label for="parent_occupation">Parent's Occupation</label> 
+                <input type="text" class="form-control" id="parent_occupation" name="parent_occupation" placeholder="Enter Parent's Occupation" >
+            </div>
+
+            <div class="col-sm-6" >
+                <label for="annual_income">Annual Income</label>
+                <input type="text" class="form-control" id="annual_income" name="annual_income" placeholder="Enter Parent's Occupation" >
+            </div>
+
+            <div class="col-sm-12" >
+                <label for="class">Select Class</label>
+                <select class="custom-select" id="course_id" name="course_id">
+                    <option value="" selected disabled>Class</option>
+                    {% for one_class in total_classes %}
+                        <option value="{{one_class.id}}">{{one_class.standard}}{{one_class.division}}</option>
+                    {% endfor %}
+                </select>    
+            </div>
+        </div>
+    </div>
+
+        <div style="padding: 10px 10px;margin: 20px 28px; background-color: white;    position: relative;display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;">
+
+
+        <span><h3>Result of Last Exam</h3></span>
+        <div class="row">
+
+            <div class="col-sm-6" >
+                <label for="caste">College Name</label>
+                <input type="" class="form-control" id="college_name" name="college_name" placeholder="Enter College Name" >
+            </div>
+
+            <div class="col-sm-6" >
+                <label for="caste">Name Board/University</label>
+                <input type="" class="form-control" id="board" name="board" placeholder="Name Of Board/University" >
+            </div>
+
+            <div class="col-sm-4" >
+                <label for="caste">Seat No</label>
+                <input type="" class="form-control" id="seat_no" name="seat_no" placeholder="Enter Seat No" >
+            </div>
+
+            <div class="col-sm-4" >
+                <label for="caste">Select Month</label>
+                    <select class="custom-select" id="month" name="month">
+                        <option value="" selected disabled>Select Month</option>
+                        <option name="cycle" value="1">Jan</option>
+                        <option value="2" name="cycle">Feb</option>
+                        <option value="3" name="cycle">March</option>
+                        <option value="4" name="cycle">April</option>
+                        <option value="5" name="cycle">May</option>
+                        <option value="6" name="cycle">June</option>
+                        <option value="7" name="cycle">July</option>
+                        <option value="8" name="cycle">Aug</option>
+                        <option value="9" name="cycle">Sep</option>
+                        <option value="10" name="cycle">Oct</option>
+                        <option value="11" name="cycle">Nov</option>
+                        <option value="12" name="cycle">Dec</option>
+                    </select>    
+                </div>
+
+            <div class="col-sm-4" >
+                <label for="caste">Select Year</label>
+                    <select class="custom-select" id="year" name="year">
+                        <option value="" selected disabled>Select Year</option>
+                        {% for i in range %}
+                        <option name="cycle" value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>    
+            </div>
+
+            <div class="col-sm-3" >
+                    <label for="caste">Marks Scored</label>
+                    <input type="" class="form-control" id="marks_scored" name="marks_scored" placeholder="Enter Marks" >
+            </div>  
+            
+            <div class="col-sm-3" >
+                    <label for="caste">Total Marks</label>
+                    <input type="" class="form-control" id="out_of_marks" name="out_of_marks" placeholder="Out of Marks" >
+            </div>  
+            
+            <div class="col-sm-3" >
+                   <label for="caste">Percentage</label>
+                   <input type="" class="form-control" id="percentage" name="percentage" placeholder="Enter Percentage" >
+            </div>
+
+            <div class="col-sm-3" >
+                    <label for="caste">Select Grade</label>
+                        <select class="custom-select" id="grade" name="grade">
+                            <option value="" selected disabled>Select Grade</option>
+                            <option name="cycle" value="A+">A+</option>
+                            <option value="A" name="cycle">A</option>
+                            <option value="B" name="cycle">B</option>
+                            <option value="C" name="cycle">C</option>
+                            <option value="D" name="cycle">D</option>
+                            <option value="E" name="cycle">E</option>
+                            <option value="F" name="cycle">F</option>
+                        </select>    
+            </div>
+            
+    
+  </div>
+
+  <center><button type="submit" id="add-applicant" class="btn btn-primary m-3 " data-url="{% url 'admission_management:admission' %}">Submit</button></center>
+  </div>    
+
+  <script type="text/javascript">
+      function standby() {
+            document.getElementById('pic').src = '/media/user_default.jpeg';
+        }
+
+         $('#image').change(function(){
+                var input = this;
+                var url = $(this).val();
+                var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+                if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) 
+                {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                    $('#pic').attr('src', e.target.result);
+                    }
+                reader.readAsDataURL(input.files[0]);
+                }
+                else
+                {
+                $('#pic').attr('src', '/media/user_default.jpeg');
+                }
+                
+            });
+
+
+
+
+  $('#add-applicant').click(function (e) {
+      e.preventDefault()
+      // check_errors();
+      console.log(ip);
+      var url = ip + '/admission_management/admission/';
+      var image = document.getElementById('image').files[0];
+      
+      $("#first_name,#last_name,#applicant_email,#middle_name,#applicant_phone,#dob,#caste,#mothers_name,#nationality,#fathers_name,#local_address,#permanent_address,#aadhar_no,#parent_phone,#parent_email,#parent_occupation,#annual_income").each(function(){
+          usr[$(this).attr('name')] = ($(this).val().trim())?$(this).val().trim():null;
+      });
+      
+      $("#college_name,#board,#seat_no,#month,#year,#marks_scored,#out_of_marks,#percentage,#grade").each(function(){
+          last_exam[$(this).attr('name')] = ($(this).val().trim())?$(this).val().trim():null;
+      });
+      console.log(JSON.stringify(last_exam))
+    //   return;
+      // usr['password'] = 123;
+      usr[$("#gender").attr('name')]=$("#gender option:selected").val();
+      usr[$("#category_id").attr('name')]=$("#gender option:selected").val();
+      usr[$("#course_id").attr('name')]=$("#course_id option:selected").val();
+      usr['institute_id']={{institute_id}};
+      usr['institute_form_id']=Math.floor(Math.random()*150000);
+      usr['reg_id']=Math.floor(Math.random()*150000)%1000;
+      usr['status']=1;
+      
+      console.log(usr);
+      
+      // var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();    
+      var formData = new FormData();
+          formData.append("user",JSON.stringify(usr));
+          formData.append("last_exam",JSON.stringify(last_exam));          
+          // formData.append("instuser",JSON.stringify(instUsr));
+          formData.append("image",image);
+          
+      $.ajax({
+        type: "POST",
+        url: url,
+        contentType: false,
+        processData: false,
+        headers: { "X-CSRFToken": getCookie("csrftoken") },
+        data: formData,
+       
+        success: function(response) {
+          console.log(response);
+          myToast("<h5>"+response.message+"</h5>", {color: 'success','duration':'4000'});
+          location.relaod();
+        },
+        error: function(response) {
+          console.log(response);
+          var msg = "Oops something went wrong!!!";
+          if (response.responseJSON) {
+            if (response.responseJSON.message){
+                msg = '';
+                $.each(response.responseJSON.message,function(key,value){
+                  msg+='<h6 class="alert-heading text-capitalize font-weight-bold">'+key+':</h6>'+value.join(", ")
+                });
+            }
+          } myToast(msg,{color:'danger'});
+        }
+      });
+    
+  });
+
+
+  function getCookie(c_name) {
+            if (document.cookie.length > 0) {
+              c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                  c_start = c_start + c_name.length + 1;
+                  c_end = document.cookie.indexOf(";", c_start);
+                if (c_end == -1) c_end = document.cookie.length;
+              return unescape(document.cookie.substring(c_start, c_end));
+              }
+            }
+           return "";
+          }
+  </script>

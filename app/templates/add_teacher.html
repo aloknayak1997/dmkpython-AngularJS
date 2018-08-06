@@ -1,0 +1,213 @@
+  <!-- Page Heading Start-->
+  <div class="breadcrumbs shadow-0">
+    <div class="breadcrumbs-inner">
+      <div class="row m-0">
+        <div class="col-sm-4">
+          <div class="page-header float-left">
+            <div class="page-title">
+              <h1>Add Teacher</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="page-header float-right">
+            <div class="page-title">
+              <ol class="breadcrumb text-right">
+                <li><a href="#/!">Dashboard</a></li>
+                <li class="active">Add Teacher</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Heading End-->
+  <!-- Page Content Goes Here-->
+  <div class="content mt-3">
+    <div class="row">
+      <div class="col-sm-12 col-lg-10 col-md-12">
+
+        <div class="card">
+          <div class="card-body" id="form-add-teacher">
+            <h5 class="card-title text-primary">Add Teacher</h5>
+
+              <!-- <div class="col-sm-12 input-group input-group-sm form-group">
+                <div class="input-group-prepend">
+                  <i class="input-group-text fa fa-bookmark" aria-hidden="true"></i>
+                </div>
+                <input type="text" name="password" required="" maxlength="128" id="id_password" placeholder="Password">
+              </div> -->
+
+              <!-- <div class="col-sm-12 input-group input-group-sm form-group">
+                <div class="input-group-prepend">
+                  <i class="input-group-text fa fa-bookmark" aria-hidden="true"></i>
+                </div>
+                <input type="text" name="username" required="" maxlength="150" id="id_username" placeholder="Username">
+              </div> -->
+
+              <div class="col-md-12 form-group p-0 m-0">
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-user" aria-hidden="true"><span class="red-txt">*</span></i>
+                  </div>
+                  <input class="form-control" type="text" name="first_name" required="" maxlength="30" id="id_first_name" placeholder="First name">
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-user" aria-hidden="true"><span class="red-txt">*</span></i>
+                  </div>
+                  <input class="form-control" type="text" name="last_name" required="" maxlength="150" id="id_last_name" placeholder="Last name">
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-user" aria-hidden="true"></i>
+                  </div>
+                  <input class="form-control" type="text" name="middle_name" maxlength="75" id="id_middle_name" placeholder="Middle name">
+                </div>
+              </div>
+
+
+              <div class="col-md-12 form-group p-0 m-0">
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-envelope" aria-hidden="true"><span class="red-txt">*</span></i>
+                  </div>
+                  <input class="form-control" type="email" name="email" required="" maxlength="254" id="id_email" placeholder="Email">
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-mobile" aria-hidden="true"><span class="red-txt">*</span></i>
+                  </div>
+                  <input class="form-control" type="text" name="mobile" required="" maxlength="16" id="id_mobile" placeholder="Mobile">
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-calendar" aria-hidden="true"><span class="red-txt">*</span></i>
+                  </div>
+                  <input class="form-control" type="text" name="dob" required="" id="id_dob" placeholder="Dob">
+                </div>
+              </div>
+
+
+              <div class="col-md-12 form-group p-0 m-0">
+                <div class="col-sm-4 input-group input-group-sm my-custom-select">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-venus-mars" aria-hidden="true"><span class="red-txt">*</span></i>
+                  </div>                
+                  <select id="id_gender" name="gender" required="" class="custom-select custom-select-sm" placeholder="Gender">
+                    <option value="" selected="">Gender</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Other</option>
+                  </select>
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-tint" aria-hidden="true"></i>
+                  </div>
+                  <input class="form-control" type="text" name="blood_group" maxlength="5" id="id_blood_group" placeholder="Blood group">
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-building" aria-hidden="true"></i>
+                  </div>
+                  <input class="form-control" type="text" name="religion" maxlength="75" id="id_religion" placeholder="Religion">
+                </div>
+              </div>
+
+              <div class="col-md-12 form-group p-0 m-0">
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-asterisk" aria-hidden="true"></i>
+                  </div>
+                  <input class="form-control" type="text" name="caste" maxlength="75" id="id_caste" placeholder="Caste">
+                </div>
+
+                <!-- <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-user" aria-hidden="true"><span class="red-txt">*</span></i>
+                  </div>
+                  <input class="form-control" type="text" name="mother_name" required="" maxlength="100" id="id_mother_name" placeholder="Mother name">
+                </div> -->
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-flag" aria-hidden="true"><span class="red-txt">*</span></i>
+                  </div>
+                  <input class="form-control" type="text" name="nationality" required="" maxlength="75" id="id_nationality" placeholder="Nationality">
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-map" aria-hidden="true"></i>
+                  </div>
+                  <input class="form-control" type="text" name="place_of_birth" maxlength="75" id="id_place_of_birth" placeholder="Place of birth">
+                </div>
+              </div>
+
+              <div class="col-md-12 form-group p-0 m-0">
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-map-signs" aria-hidden="true"></i>
+                  </div>
+                  <input class="form-control" type="text" name="address" maxlength="255" id="id_address" placeholder="Address">
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-map-signs" aria-hidden="true"></i>
+                  </div>
+                  <input class="form-control" type="text" name="address2" maxlength="255" id="id_address2" placeholder="Address2">
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-id-card" aria-hidden="true"><span class="red-txt">*</span></i>
+                  </div>
+                  <input class="form-control" type="text" name="designation" maxlength="100" required="" id="id_designation" placeholder="Designation">
+                </div>
+              </div>
+
+              <div class="col-md-12 form-group p-0 m-0">
+                <div class="col-sm-4 input-group input-group-sm form-group">
+                  <div class="input-group-prepend">
+                    <i class="input-group-text fa fa-calendar" aria-hidden="true"></i>
+                  </div>
+                  <input class="form-control" type="text" name="date_of_joining" id="id_date_of_joining" placeholder="Date of joining">
+                </div>
+
+                <div class="col-sm-4 input-group input-group-sm my-custom-file" title="Image">
+                  <div class="custom-file">
+                    <input class="custom-file-input" type="file" name="image" id="id_image">
+                    <label class="custom-file-label form-control custom-file-sm c-file-icon" for="id_image">Image</label>
+                  </div>
+                </div>
+              </div>
+              <!-- <input class="d-none" type="number" name="type" min="0" id="id_type" value="1" placeholder="Type">
+              <input class="d-none" type="number" name="role" min="0" id="id_role"  value="3" placeholder="Role"> -->
+              
+              <div class="form-group">
+                <button id="add-teacher" type="Submit" class="btn btn-success ml-3" data-url="{% url 'onboarding:addteach' %}">Submit</button>
+              </div>
+
+          </div>
+        </div><!-- End Card -->
+
+      </div><!-- End Grid -->
+    </div><!-- End Row -->
+  </div><!-- Content End -->
+  <script>
+    var profiling_urls = {
+      'addclass':'http://127.0.0.1:8000/onboarding/addteach',
+    }
+    var picker1 = new Pikaday({field: document.getElementById('id_date_of_joining'),format: 'YYYY-MM-DD'});
+    var picker2 = new Pikaday({field: document.getElementById('id_dob'),format: 'YYYY-MM-DD'});
+  </script>
+  <script src="static/js/dpy_teacher.js"></script>

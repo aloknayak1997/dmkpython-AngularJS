@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div style="margin-bottom: -20px">
+	  <div class="" style="margin-left: 10px">
+    <a class="btn-floating waves-effect waves-light title-back-btn" onclick="window.history.back();" onmouseover="" style="cursor: pointer;">
+      <img src="/media/icons8-left-64.png" style="height: 45px;width: 45px; margin-bottom:5px;">  </a>
+     <span class="grey-text text-darken-2" style="font-size: 1.64rem;line-height: 52px; margin-left: 50px;">Fees Types</span>
+    </div>
+</div>
+<hr>
+         
+<div class="col s12 m12 l12 padding-right-0 " style="padding-bottom:10%;">
+
+  <div class="table" >
+      <div class="card lighten-5 card_align_left">
+        <div class="card-content white-text list_view">
+            <div style="display: inline; float: left;height: 40px;margin-top: 10px">
+
+                <span id="fee_wise" style="cursor: pointer; font-size: 22px;margin-left: 100px;">
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fees Wise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+                </div>
+                
+                <div style="display: inline;float: right;height: 40px;margin-top: 10px">
+                <span id="section_wise" style="cursor: pointer; font-size: 22px;margin-right: 100px;  ">
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Class Wise &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </div>
+           </div>
+        </div>
+        <br>
+        <!--##########################################################
+        div fees wise main div content
+        ##############################################################-->
+        <div class="card lighten-5 card_align_left" id="div_fee_wise">
+          <div class="card-content white-text list_view">
+            <!-- <h5>Fees Wise</h5> -->
+              <div style="width: 100%;height: 100%">
+                <!-- <table style="width: 100%;height: 100%">
+                    <thead>
+                                  
+                    </thead>
+                    <tbody> -->
+           <ul style="list-style: none;">
+             <!--  {{total_types_fees_ids}}
+                   {{total_types_fees|length }} -->
+                   <script type="text/javascript">
+                     
+                   </script>
+              {% for type_of_fee in types_of_fees %}
+              
+                  <!-- <tr data-id="{{type_fees.id}}" class='clickable-row' >
+                      <td><i class="fa fa-navicon"></i></td>
+                      <td>{{type_fees.display_name}}
+                      </td>            
+                  </tr> -->
+
+                <li style="margin-top: 20px; margin-bottom:20px;border-bottom: 1px solid #e0e0e0;display: flex;">
+                    
+                    <span  style="cursor: pointer;margin-left: 10px; margin-right: 20px" class="edit_fees" data-toggle="tooltip" title="Edit This Fee."><i class="fa fa-pencil" style="color: #49a0ae"></i></span>
+                    
+                    <div class="collapsible-header" data-id="{{type_fees.id}}" style="cursor: pointer;">
+                      <i class="fa fa-navicon" style="margin-right: 50px;margin-left: 20px"></i>
+                      <span style="font-size: 18px">{{type_of_fee.desc}}</span>
+                      {% for type_fees in total_types_fees %}
+                      {% if type_of_fee.id == type_fees.fee_type_id %}
+                      <span style="margin-left: 20px">₹ {{type_fees.amount}}</span>
+                      {{ "<!--" }}
+                      {% endif %} 
+                      {% endfor %}
+                      {{ "-->" }}
+                    </div>
+                    
+                    <!--################################################################# edit fees type ######################################################-->
+                    <span style="display: none;" class="fee_id_label">{{type_of_fee.id}}
+                    </span>
+                    
+                    <input type="text" class="edit_fees_name form-control" data-id="{{type_of_fee.id}}" style="width: 150px;height: 30px;margin-right: 20px;margin-left: 20px" placeholder="new fees name" value="{{type_of_fee.desc}}">
+                    
+                    <input type="text" class="edit_amount form-control" id="{{type_of_fee.id}}" style="width: 150px;height: 30px;margin-right: 20px" placeholder="new amount">
+                    
+                    <input type="button" class="edit_fee_submit form-control" value="Sumbit" id="{{type_of_fee.id}}" style="width: 100px;height: 30px">
+
+                    <!--################################################################## end of edit fees type #####################################-->
+
+                    <div class="collapsible-body" style="background-color: #f1f2f7;cursor: auto;width: 100%;height: 100%">
+                    
+                    <span  style="cursor: pointer;margin-left: 10px;" class="edit_class_fee"><i class="fa fa-pencil" style="color: #49a0ae" data-toggle="tooltip" title="Edit Classes."></i></span>
+                        <div style="border: 1px solid black">
+                        <br>  
+                        {% for type_fees in total_types_fees %}
+                        {% if type_of_fee.id == type_fees.fee_type_id %}
+                        {% for one_class in total_classes %}
+                           {% if one_class.id == type_fees.institute_class_id %}
+                            <span style="margin: 10px 10px;background-color: lightgrey; height: 50px;width: 50px">&nbsp;&nbsp;{{one_class.standard}}{{one_class.division}} &nbsp;&nbsp;</span>
+                           {% endif %} 
+                        {% endfor %}
+                        {% endif %}
+                        {% endfor %}
+                        <br><br>
+                        </div>
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copy Fees to other class:</h5>
+                        <br>
+                              <div class="add_new_div" style="display: -webkit-box !important">
+                             
+                               <select class="new_fee_class form-control" style="width: 300px;border:none;border-bottom: 1px solid grey;margin-left: 30px;background-color: #f1f2f7">
+                                  <option value="0" selected disabled>Select Class</option>
+                                  {{one_class.standard}}{{one_class.division}}</option>
+
+                                  {% for one_class in total_classes %}
+                                  {% for type_fees in total_types_fees %}
+                                  {% if type_fees.id == one_class.id %}
+                                  
+                                  <option value="{{one_class.id}}">
+                                  {{one_class.standard}}{{one_class.division}}</option>
+                                  
+                                 {{ "<!--" }}
+                                  {% endif %}
+                                  
+
+                                  {% endfor %}
+                                  {{ "-->" }}
+
+                                  {% endfor %}
+                              </select>
+                              <input type="text" name="amount" class="amount form-control" style="width: 300px;display: inline;margin-left: 30px;border:none;border-bottom: 1px solid grey;margin-left: 30px;background-color: #f1f2f7" placeholder="amount">
+                              <span style="cursor: pointer;" class="add_new"><img src="/media/black_add.png" height="40px" style="border-radius: 15px 15px;">
+                                </span>
+                                
+                            </div>
+                        <br>
+                      </div>
+                  </li>
+              {% endfor %}
+              
+                    </ul>
+                  <!-- </tbody>
+                </table> -->
+              </div>
+          </div>
+        </div>  
+
+        <!--##########################################################
+        div section wise main div content
+        ##############################################################-->
+
+        <div class="card lighten-5 card_align_left" id="div_section_wise">
+          <div class="card-content white-text list_view">
+            
+            <div style="width: 100%;height: 100%">
+               <ul style="list-style: none;">
+
+              {% for one_class in total_classes %}
+                
+                <li style="margin-top: 20px; margin-bottom:20px;border-bottom: 1px solid #e0e0e0;cursor: pointer;">
+                    
+                    <div class="collapsible-header" data-id="{{one_class.id}}">
+                      <i class="fa fa-navicon" style="margin-right: 50px;margin-left: 20px"></i>
+
+                      <span style="font-size: 18px">{{one_class.standard}}{{one_class.division}}</span>
+                    </div>
+                      <div class="collapsible-body" style="background-color: #f1f2f7;cursor: auto;width: 100%;height: 100%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <br>
+                        {% for type_fees in total_types_fees %}
+                            {% if one_class.id == type_fees.institute_class_id %}
+                            <span style="margin: 10px 10px;background-color: lightgrey; height: 50px;width: 50px">&nbsp;&nbsp;{{type_fees.display_name}}:{{type_fees.amount}} &nbsp;&nbsp;</span>
+                           {% endif %} 
+                        {% endfor %}
+                        <br><br>
+
+                      </div>
+                  </li>
+              {% endfor %}
+                    </ul>
+                  
+              </div>
+
+          </div>
+        </div>  
+
+    </div>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() { 
+              
+              $("#div_fee_wise").prop('hidden', false);
+              $("#div_section_wise").prop('hidden', true);
+              $('#fee_wise').css('border-bottom','2px solid black')
+              $('.collapsible-body').prop('hidden', true);
+              // alert("hello");
+              $('.edit_amount').prop('hidden',true);
+              $('.edit_fee_submit').prop('hidden',true);
+              $('.edit_fees_name').prop('hidden',true);
+           });
+
+            $("#section_wise").click(function(){
+              $("#div_section_wise").prop('hidden', false);
+              $("#div_fee_wise").prop('hidden', true);
+
+              $('#section_wise').css('border-bottom','2px solid black');
+              $('#fee_wise').css('border-bottom','none');
+              
+            });
+
+            $("#fee_wise").click(function(){
+              $("#div_section_wise").prop('hidden', true);
+              $("#div_fee_wise").prop('hidden', false);
+
+              $('#section_wise').css('border-bottom','none');
+              $('#fee_wise').css('border-bottom','2px solid black');
+              
+            });
+            
+            $(".collapsible-header").click(function() {
+               if($(this).parent('li').attr("class") == "active"){
+                  $(this).parent('li').removeClass();
+                  $(this).closest('li').children('.collapsible-body').prop('hidden',true); 
+                }
+                else{
+                    $(".collapsible-header").each(function(){
+                      if($(this).parent('li').attr("class") == "active"){
+                        $(this).parent('li').removeClass();
+                        $(this).closest('li').children('.collapsible-body').prop('hidden',true); 
+                        
+                        //alert('asd');
+                      }
+                    });
+                $(this).parent('li').addClass("active");
+
+                $(this).closest('li').children('.collapsible-body').prop('hidden',false);
+                $(this).closest('li').children('.edit_amount').prop('hidden',true);
+                $(this).closest('li').children('.edit_fee_submit').prop('hidden',true);
+                $(this).closest('li').children('.edit_fees_name').prop('hidden',true);
+                }              
+            });
+            
+            $('.edit_fee_submit').click(function(){
+              var formData = [];
+              var url = "{% url 'fees_management:fee_types' %}";
+              var fees_type_id = $(this).closest('li').children('.fee_id_label').text();
+              // alert(fees_type_id);
+              var fees_name = $(this).closest('li').children('.edit_fees_name').val();
+              var fees_amount = $(this).closest('li').children('.edit_amount').val();
+              // alert(fees_name);
+              if(fees_amount<=0){
+                myToast("please eneter proper fees amount.",{color:'danger'});
+                return;
+              }
+              
+              formData.push(fees_type_id);
+              formData.push(fees_name);
+              formData.push(fees_amount);
+              console.log(formData);
+               var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        // contentType: false,
+                        // processData: false,
+                        csrftoken:csrftoken,
+                        data: {
+                            'formData' : formData,
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            myToast("Successfully Updated fee !",{color:'success'});
+                            location.reload();
+                        },
+                        error: function (response) {
+                            myToast("error occurred, you may have entered icorrect amount!",{color:'danger'});
+                            console.log(response);
+                        },
+                      });//End of ajax request
+
+            });
+
+            // $('.add_new').click(function(){
+            //   alert($('.new_fee_class').val());
+            //           if($('.new_fee_class').val() == null){
+            //             alert("please select class.");
+            //             return;
+            //           }
+            //   url="{% url 'fees_management:fee_types' %}";
+            //   formData = [];
+            //   classes = [];
+
+            // });
+
+            $('.edit_fees').click(function(){
+              $(".collapsible-header").each(function(){
+                      if($(this).parent('li').attr("class") == "active"){
+                        $(this).parent('li').removeClass();
+                        $(this).closest('li').children('.collapsible-body').prop('hidden',true); 
+                  $(this).closest('li').children('.edit_amount').prop('hidden',true);
+                  $(this).closest('li').children('.edit_fee_submit').prop('hidden',true);
+                  $(this).closest('li').children('.edit_fees_name').prop('hidden',true);
+
+                        //alert('asd');
+                      }
+                    });
+              $(this).closest('li').children('.edit_amount').prop('hidden',false);
+              $(this).closest('li').children('.edit_fee_submit').prop('hidden',false);
+              $(this).closest('li').children('.edit_fees_name').prop('hidden',false);
+            });
+
+                    
+                    $(document).ready(function(){
+                        $('[data-toggle="tooltip"]').tooltip();   
+                    });
+
+                    /////////////////////////////////////////////////////////////////////////////checking for number input in text box amount /////////////////// /////////////////////////////////////////////////////////////////////
+                    $(document).ready(function () {
+                     $(".amount").forceNumeric();
+                     $(".edit_amount").forceNumeric();
+                    });
+
+                    // forceNumeric() plug-in implementation
+                    jQuery.fn.forceNumeric = function () {
+                     return this.each(function () {
+                       $(this).keydown(function (e) {
+                         var key = e.which || e.keyCode;
+
+                         if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+                         // numbers   
+                           key >= 48 && key <= 57 ||
+                         // Numeric keypad
+                           key >= 96 && key <= 105 ||
+                         // comma, period and minus, . on keypad
+                          key == 190 || key == 188 || key == 109 || key == 110 ||
+                         // Backspace and Tab and Enter
+                          key == 8 || key == 9 || key == 13 ||
+                         // Home and End
+                          key == 35 || key == 36 ||
+                         // left and right arrows
+                          key == 37 || key == 39 ||
+                         // Del and Ins
+                          key == 46 || key == 45)
+                           return true;
+
+                         return false;
+                       });
+                     });
+                    }//end of number check
+
+
+
+    </script>
+
+
+  </div>
+
+{% endblock %}

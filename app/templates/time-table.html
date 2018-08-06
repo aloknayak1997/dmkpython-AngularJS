@@ -1,0 +1,149 @@
+  <link rel="stylesheet" href="static/css/jquery-ui.min.css">
+  <script src="static/js/third_party/jquery-ui.min.js"></script>
+  <script src="static/js/third_party/handsontable.full.min.js"></script>
+  <link rel="stylesheet" href="static/css/handsontable.full.min.css">
+  <style>
+    .draggable { cursor: move; }
+    .ui-draggable-dragging { position: relative; z-index: 1000000000; }
+  </style>
+  <!-- Page Heading Start-->
+  <div class="breadcrumbs shadow-0">
+    <div class="breadcrumbs-inner">
+      <div class="row m-0">
+        <div class="col-sm-4">
+          <div class="page-header float-left">
+            <div class="page-title">
+              <h1>Timetable</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="page-header float-right">
+            <div class="page-title">
+              <ol class="breadcrumb text-right">
+                <li><a href="/">Dashboard</a></li>
+                <li class="active">Timetable</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Heading End-->
+  <!-- Page Content Goes Here-->
+  <div class="content mt-3">
+    <div class="row">
+      
+      <div class="col-lg-6 input-group input-group-sm my-custom-select mb-4">
+        <div class="input-group-prepend">
+          <i class="input-group-text fa fa-bookmark" aria-hidden="true"></i>
+        </div>                
+        <select id="select-class" class="custom-select custom-select-sm">
+        </select>
+      </div>
+
+      <div class="col-lg-12" style="position: relative;">
+
+        <div lass="ui-widget-content">
+            <div id="excel_table" class="handsontable"></div>
+
+            <div id="move-1" class="movable-element hidden" style="right:1%;top:30%;">
+                <div id="move-1header" class="movable-header">Teacher - Subject</div>
+                  <h6 class=""><button class="btn btn-dark btn-sm pull-right m-2" style="position:absolute;top:0;right:0;" data-toggle="modal" data-target="#ts-modal"><i class="fa fa-plus"></i></button></h6>
+                  <div class="col-md-12">
+<!--                     <div class="col-md-6 p-0 append-teacher">
+                    </div>
+                    <div class="col-md-6 p-0 append-subjects">
+                    </div> -->
+
+                    <div class="col-md-12 border h-50 border pl-0 append-ts">
+                      <!-- <button class="btn btn-primary pulse px-2 py-1"><i class="fa fa-hand-rock-o"></i></button> -->
+                      <!-- <span class="ml-2 draggable teach-sub"></span> -->
+                    </div>
+                    <div class="col-md-12 h-50 ts-err-text d-none">
+                      <p class="alert alert-danger text-center" style="font-size:0.8rem;">
+                          <i style="font-size:1rem;" class="fa fa-exclamation-circle"></i>
+                          <br>
+                          No Teacher-subject combination found! Please click the add[+] button to add <strong class="text-nowrap">teacher-subject</strong> combination for the class
+                      </p>
+                    </div>
+                  </div>
+            </div>
+            <div id="move-2" class="movable-element hidden" style="right:20%;top:30%;">
+                <div id="move-2header" class="movable-header">Start Time - End Time</div>
+                <div class="col-md-12">
+                  <!-- Input group, just add class 'clockpicker', and optional data-* -->
+                  <div class="input-group clockpicker" data-placement="bottom" title="Start Time">
+                    <span class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </span>
+                    <input type="text" readonly="" class="form-control time-picker-1" placeholder="Start Time">
+                  </div>
+                  <div class="input-group clockpicker" data-placement="bottom" title="End Time">
+                    <span class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </span>
+                    <input type="text" readonly="" class="form-control time-picker-2" placeholder="End Time">
+                  </div>                  
+                  <div class="col-md-12 border h-50 border pl-0 mt-1">
+                    <!-- <button class="btn btn-primary pulse px-2 py-1"><i class="fa fa-hand-rock-o"></i></button> -->
+                    <span class="draggable time-table-time"></span>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- <button type="button" class="btn btn-primary generate-timetable"> <i class="fa fa-cog"></i> Submit</button> -->
+      </div>
+    </div>
+  </div>
+  <!-- Content End -->
+
+  <!-- Modal to add teacher subject combination -->
+  <div id="ts-modal" class="modal fade" tabindex="-1" role="dialog" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Teacher - Subject</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-6 p-0 append-teacher">
+              </div>
+              <div class="col-md-6 p-0 append-subjects">
+              </div>
+
+              <div class="col-md-12 border border pl-0 text-nowrap">
+                <!-- <button class="btn btn-primary pulse px-2 py-1"><i class="fa fa-hand-rock-o"></i></button> -->
+                <span class="ml-2 teach-sub"></span>
+                <button class="btn btn-danger pull-right btn-sm add-teach-sub"><i class="fa fa-plus"></i></button>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal to add teacher subject combination -->
+
+  <script>
+  var day_arr = {'monday':1, 'tuesday':2, 'wednesday':3, 'thursday':4, 'friday':5, 'saturday':6, 'sunday':7 };
+  var day_id_arr = {1 : 'Monday', 2 : 'Teusday', 3 : 'Wednesday', 4 : 'Thursday', 5 : 'Friday', 6 : 'Saturday', 7 : 'Sunday' };
+
+ var timetable_urls = {
+    'class':ip+'profiling/class/',
+    'viewteachers':ip+'onboarding/view-teachers/',
+    'subbyclass':ip+'profiling/subject-by-class',
+    'managett':ip+'profiling/manage-timetable/',
+    'cssuser':ip+'profiling/session-subuser/',
+  }      
+  dragElement(document.getElementById(("move-1")));//Defined in custom js
+  dragElement(document.getElementById(("move-2")));//Defined in custom js
+  </script>
+  <script src="static/js/dpy_timetable.js"></script>
+endblock/}

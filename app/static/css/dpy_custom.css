@@ -1,0 +1,417 @@
+/* ALERTS */
+/* inspired by Twitter Bootstrap */
+
+body{
+  position:relative;
+}
+
+#ohsnap{
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  margin-left: 5px;
+  z-index: 1099;
+}
+.pos-rel{
+  position: relative;
+}
+.pos-abs{
+  position: absolute;
+}
+.pos-fixed{
+  position: fixed;
+}
+/*.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  right: 21px;
+  float: right;
+  clear: right;
+}*/
+/*
+.alert-danger {
+  color: white;
+  background-color: #DA4453;
+}
+.alert-success {
+  color: white;
+  background-color: #37BC9B;
+}
+.alert-primary {
+  color: white;
+  background-color: #4A89DC;
+}
+.alert-warning {
+  color: white;
+  background-color: #F6BB42;
+}
+.alert-info {
+  color:white;
+  background-color: #17A2B8;
+}
+.alert-classic {
+  color:white;
+  background-color:rgba(0, 0, 0, 0.8196078431372549);
+}*/
+
+.my-custom-file .custom-file-sm, .my-custom-select .custom-select-sm{
+    height: 2rem;
+    line-height: initial;
+    font-size: 0.9rem;
+    color: #797979;
+}
+.my-custom-file .custom-file-sm::after{
+  height: 1.9rem;
+}
+
+.bg-my{
+  background-color:#ea4236 !important;
+}
+.btn-my{
+  color: #fff;
+  background-color:#ea4236 !important;
+  border-color: #ea4236 !important;
+}
+
+i.input-group-text{
+  min-width: 35px;
+}
+.c-file-icon::after{
+  font-family: FontAwesome;
+  content: "\f0c6";
+}
+
+/*----------- New Menu Color Scheme ----------*/
+.navbar .menu-title{
+  border-bottom: 1px solid #cccccc;
+}
+
+.navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon {
+    color: #457bff !important;
+}
+
+.navbar .navbar-nav li.menu-item-has-children a:hover:before {
+    color: #457bff;
+}
+/*----------- New Menu Color Scheme End ----------*/
+
+/*profile-widget*/
+
+.profile-widget {
+    text-align: center;
+
+}
+/*profile-widget image bg*/
+.profile-widget p{
+    font-weight: 300;
+    /*margin-bottom: 15px;*/
+}
+
+.follow-info{
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.profile-widget h4 {
+    margin: 5px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.profile-widget h6 {
+    margin: 0px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.profile-widget h6 span i{
+    padding-right: 4px;
+}
+
+.profile-widget h6 span{
+    padding-right: 8px;
+}
+
+.follow-ava {
+    /* border-radius: 50%; */
+    /* -webkit-border-radius: 50%; */
+    /* border: 5px solid rgba(0,0,0,0.1); */
+    /* display: inline-block; */
+    /*background: #272c33;*/
+    /* height: 100%; */
+  background-image: linear-gradient(to right bottom, #d15022, #b92f49, #8b295d, #542b5c, #232546);
+}
+
+.follow-ava- {
+    background: -moz-linear-gradient(140deg, rgba(255,85,66,1) 0%, rgba(33,0,0,1) 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(33,0,0,1)), color-stop(100%, rgba(255,85,66,1)));
+    background: -webkit-linear-gradient(140deg, rgba(255,85,66,1) 0%, rgba(33,0,0,1) 100%);
+    background: -o-linear-gradient(140deg, rgba(255,85,66,1) 0%, rgba(33,0,0,1) 100%);
+    background: -ms-linear-gradient(140deg, rgba(255,85,66,1) 0%, rgba(33,0,0,1) 100%);
+    background: linear-gradient(310deg, rgba(255,85,66,1) 0%, rgba(33,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#210000', endColorstr='#FF5542',GradientType=1 );
+}
+
+.profile-widget .my-img {
+
+    /*   border-radius: 50%; */
+    /* -webkit-border-radius: 50%; */
+    width: 150px;
+    height: 150px;
+    /* display: inline-block; */
+    /* float: left; */
+}
+.def-institute-logo{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.def-institute-name{
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  left: 0;
+  color: #272c33;
+}
+
+.user-edit-1:hover > i{
+  color: #007bff!important;
+}
+.user-save-1:hover > i{
+  color: #28a745!important;
+}
+.user-cancel-1:hover > i{
+  color: #dc3545!important;
+}
+
+.user-edit-1:hover{
+  background:#ddd;
+}
+.user-save-1:hover{
+  background:#ddd;
+}
+.user-cancel-1:hover{
+  background:#ddd;
+}
+.movable-element {
+    position: fixed;
+    z-index: 1000;
+    background-color: #f1f1f1;
+    /*text-align: center;*/
+    border: 1px solid #d3d3d3;
+    width: 250px;    
+    min-width: 250px;
+    box-shadow: rgba(0, 0, 0, 0.42) 0px 2px 15px;
+}
+
+.movable-header {
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+    background-color: #2196F3;
+    color: #fff;
+}
+
+*[draggable="true"]{
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  cursor: -webkit-grab;
+}
+
+/* ---------------- Css For Table ----------------------- */
+
+.def-table td {
+  padding: 2px;
+}
+.def-table th {
+  padding: 2px;
+}
+
+/* ---------------- End Css For Table ------------------- */
+
+/* ---------------- Custom CSS Effects ----------------- */
+.blink {
+  animation-duration: 1000ms;    /*blinking speed decreases and increase */
+  animation-name: tgle;
+  animation-iteration-count: infinite;
+}
+
+@keyframes tgle {
+  0% {
+    opacity: 0;
+  }
+
+  49.99% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+
+  99.99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.pulse {
+  overflow: initial;
+  position: relative;
+}
+
+.pulse::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: inherit;
+  border-radius: inherit;
+  -webkit-transition: opacity .3s, -webkit-transform .3s;
+  transition: opacity .3s, -webkit-transform .3s;
+  transition: opacity .3s, transform .3s;
+  transition: opacity .3s, transform .3s, -webkit-transform .3s;
+  -webkit-animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+          animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  z-index: 1;
+}
+
+@-webkit-keyframes pulse-animation {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
+
+@keyframes pulse-animation {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
+
+
+/* ---------------- Custom CSS Effects ----------------- */
+
+/*----------------------Add Class Page CSS----------------------*/
+#add-class-card{
+  position: relative;
+}
+#add-class-card div.add-class-body {
+    /*stacking card-body above each other*/
+    background-color:#fff;
+    position: absolute;
+    width: 100%;
+    border:1px solid #ccc;
+}
+#add-class-card div.add-class-body:not(:first-of-type) {
+    display: none;
+}
+.get-class-info{
+	cursor: pointer;
+}
+.get-class-info:hover{
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  background:#f1f1f1;
+}
+.get-class-info:hover .list-group .list-group-item{
+  background:#f1f1f1;
+}
+/*.class-tabs .nav-link.active {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff #007bff #ccc;
+}*/
+/*----------------------End Add Class Page CSS----------------------*/
+
+/* ----------------------Switch Button---------------------- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*---------------------- ENd Switch button css ----------------------*/

@@ -1,0 +1,248 @@
+body{
+    background:#fbf9f99e;
+    margin: 0;
+}
+
+body *{
+    font-family: Ubuntu;
+}
+.menus {
+    margin: 26px 0 0 13px;
+}
+div#menu {
+    background: rgb(14, 17, 32);
+    width: 64px;
+    height: 490px;
+    border-radius: 0 36px 36px 0;
+    position: absolute;
+}
+#myProgress {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 118px;
+    padding: 4px;
+}
+
+
+svg.icons:hover {
+    stroke: black;
+}
+.icons {
+    width: 64px;
+    padding: 10px;
+    stroke: #fff;
+    margin: 0 0 0 38%;
+    position: absolute;
+}
+.save {
+    width: 64px;
+    padding: 10px;
+    stroke: #fff;
+    margin: 0 0 0 38%;
+    position: absolute;
+}
+  
+  .cls-1,.cls-2 {
+    fill:none;
+    stroke-linejoin:round;
+    stroke-linecap:round;
+    stroke-width: 2px;
+  }
+span.input {
+    background: white;
+    color: black;
+    font-weight: 200;
+    padding: 1px 7px;
+    border-radius: 5px;
+}
+div#status {
+    margin: 2%;
+}
+#myBar {
+    width: 1%;
+    height: 18px;
+    background-color: #57dc5d;
+    border-radius: 118px;
+}
+.home {
+    background: #35c4a2;
+    padding: 3%;
+    border-radius: 12px 12px 0 0;
+    margin: 5% 41% 0 5%;
+}
+.close {
+    position: absolute;
+    right: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .hide{
+      display:none;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 26px;
+    content: ' ';
+    height: 15px;
+    width: 3px;
+    background-color: #333;
+}
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+  
+.overlay {
+    background: red;
+    padding: 13px;
+    color:white;
+    z-index: 999999;
+    position: fixed;
+    box-shadow: 1px 12px 43px -13px black;
+    opacity: 0.48;
+    border-radius: 9px;    
+    transition: all 0.3s ease;
+    animation: animate 0.5s forwards;
+}
+div#input-feilds {
+    margin-bottom: 7px;
+    background: white;
+    padding: 3px 12px;
+    width: 46%;
+    border-radius: 24px;
+}
+.green{
+background:green;
+}
+
+@keyframes animate {
+    0%   {opacity: 0.85;margin: -26% 3% 3% 3%;}
+    25%  {opacity: 0.89;margin: -11% 3% 3% 3%}
+    50%  {opacity: 0.89;margin: 2% 3% 3% 3%}
+    100% {opacity: 0.98;margin: 3% 3% 3% 3%}
+}
+
+.notification {
+    width: 25%;
+    float: right;
+}
+/* span.fa-icons {
+    background: #c0bec7;
+    padding: 9px;
+    color: #2b2b2b;
+} */
+span.fa-icons {
+    background: #d2d8d7;
+    padding: 9px;
+    color: black;
+}
+.feilds {
+    margin: 3%;
+}
+.generate {
+    background: #fff;
+    padding: 7px;
+    border-radius: 8px;
+    color: #48c362;
+    cursor: pointer;
+    margin: 15px;
+    border: 1px solid #00000026;
+    box-shadow: 1px 1px 33px -11px #000000;
+}
+.buttons {
+    display: inline-flex;
+}
+.data {
+    background: #ffffff;
+    padding: 1% 7%;
+    width: 90%;
+    border: 1px solid #0000002e;
+    margin:0% 0 0 2%;
+    border-radius:0 0 12px 12px;
+    box-shadow: 2px 9px 63px -21px;
+}
+.data-head {
+    background: #ffffff;
+    padding: 1% 7%;
+    width: 90%;
+    margin:2% 0 0 2%;
+    color: #747474;
+    border: 1px solid #0000002e;
+    border-radius:12px 12px 0  0;
+    box-shadow: 2px 9px 63px -21px;
+}
+a{
+    text-decoration: none;
+}
+div#response{
+    border-radius: 3px;
+}
+select.input {
+    border: none;
+    padding: 7px;
+    border-radius: 0 8px 8px 0px;
+    background: white;
+    color: #757479;
+}
+input{
+    border:none;
+    padding: 5px;
+    border-radius: 0 8px 8px 0px;
+}
+input[type="button"] {
+    background: #34c29f;
+    color: white;
+    font-weight: 700;
+    border-radius: 2px;
+    font-size: 15px;
+    padding: 17px;
+    margin-left: 36%;
+}
+
+.input-feilds {
+    margin-bottom: 2%;
+    display: inline-flex;
+    box-shadow: 2px 1px 16px -8px, 1px 1px 17px -8px;
+    border-radius: 10px;
+}
+/* label {
+    background: #42dcad;
+    padding: 6px;
+    color: #0e1120;
+    border: 2px solid #0e1120;
+} */
+input#id_password {
+    margin: 0 0 0 4px;
+}
+
+.wrapper {
+    margin: 15% 37% 0 31%;
+    background: #35c4a2;
+    padding: 34px;
+    align-items: center;
+}
+
+button , input.btn_login{
+    border: none;
+    padding: 7px;
+    background: #fff;
+    font-size: 1em;
+    font-weight: 500;
+}
+.signup{
+    border: none;
+    padding: 7px;
+    background:rgb(14, 17, 32);
+   color:#fff;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+
+  

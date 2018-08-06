@@ -1,0 +1,231 @@
+{% extends 'base.html' %} {% block title %} Apply Leave {% endblock %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static '/css/hr_style.css'%}">
+<style>
+    .in-feilds {
+        display: inline-grid;
+        margin: 2%;
+    }
+
+    .input {
+        border-bottom: 1px solid #a0a2a2;
+        border-radius: 0 !important;
+        transition: all 0.3s;
+        margin: 1%;
+        width: 157px;
+    }
+
+    .data {
+        padding: 0 !important;
+    }
+
+    .head {
+        background: #ffffff;
+        margin: 2% 0 0 2%;
+        color: #747474;
+        border-radius: 12px 12px 0 0;
+        box-shadow: 2px 9px 63px -21px;
+    }
+
+    .in-data {
+        background: #ffffff;
+        padding: 1% 7%;
+        margin: 2% 0 0 2%;
+        border: 1px solid #a0a89e;
+        box-shadow: 1px 1px 20px -10px;
+    }
+
+    input:focus {
+        border-bottom: 2px solid #06d03b;
+        transition: all 0.3s;
+    }
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+    crossorigin="anonymous">
+<div class="data-head">
+    <span>Salary Structure</span>
+</div>
+<div class="data">
+    <div class="in-feilds">
+        <span style="display:inline-flex; margin-bottom:2px; font-size: 11px;">Employee</span>
+        <div class="input-feilds" style=" width: 210px; ">
+            <span class="fa-icons">
+                <i class="fas fa-user"></i>
+            </span>
+
+            <select id="employee" class="input">
+                <optgroup>
+                    <option>Select Employee</option>
+                    {% for user in data %}
+                    <option data-id={{user.id}} value={{user.first_name}}>{{user.first_name}}</option>
+                    {% endfor %}
+                </optgroup>
+            </select>
+        </div>
+        <div class="block">
+            <div class="head">
+                <span>Earnings</span>
+            </div>
+            <div class="in-data">
+                <div style="display: inline-block;">
+                    <div style=" display: inline-grid; ">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">Basic</span>
+                        <input type="number" id="bs" placeholder="Basic" class="input" />
+                    </div>
+                    <div style=" display: inline-grid;">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">HRA</span>
+                        <input type="number" id="hra" placeholder="HRA" class="input" />
+                    </div>
+                    <div style=" display: inline-grid;">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">TA</span>
+                        <input type="number" id="ta" placeholder="TA" class="input" />
+                    </div>
+                    <div style=" display: inline-grid;">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">DA</span>
+                        <input type="number" id="da" placeholder="DA" class="input" />
+                    </div>
+                    <div style=" display: inline-grid;">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">Bonus</span>
+                        <input type="number" id="bonus" placeholder="Bonus" class="input" />
+                    </div>
+                    <div style=" display: inline-grid;">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">Medical</span>
+                        <input type="number" id="med" placeholder="Medical" class="input" />
+                    </div>
+                </div>
+                <div style="display: inline-block;">
+
+
+                    <div style=" display: inline-grid;">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">Special Allowance</span>
+                        <input type="number" id="spal" placeholder="Special Allowance" class="input" />
+                    </div>
+                    <div style=" display: inline-grid;">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">Others</span>
+                        <input type="number" id="others" placeholder="Others" class="input" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <div class="head">
+                <span>Deduction</span>
+            </div>
+            <div class="in-data">
+                <div style="display: inline-block;">
+                    <div style=" display: inline-grid; ">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">TDS</span>
+                        <input type="number" id="tds" placeholder="TDS" class="input" />
+                    </div>
+                    <div style=" display: inline-grid;">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">Professionla tax</span>
+                        <input type="number" id="pt" placeholder="PT" class="input" />
+                    </div>
+                    <div style=" display: inline-grid;">
+                        <span style="display:inline-flex; margin:2px; font-size: 11px;">Provident Fund</span>
+                        <input type="number" id="pf" placeholder="PF" class="input" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <input id="save" type="button" value="Save" />
+</div>
+<script>
+    var empid, bs, hra, ta, da, med, bonus, spal;
+
+    $("select#employee").change(function () {
+        employee = $("#employee option:selected").val();
+        empid = $("#employee option:selected").attr("data-id");
+        var data = [];
+
+        data.push(empid);
+        $.ajax({
+            url: 'structure/',
+            type: 'POST',
+            headers: { "X-CSRFToken": getCookie("csrftoken") },
+            enctype: "multipart/form-data",
+            data: {
+                'studentData': data,
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log("data:"+data);
+                for(i=0;i<data.data.length;i++){
+                bs = data.data[i].basic;
+                hra = data.data[i].hra;
+                ta = data.data[i].ta;
+                da = data.data[i].da;
+                med = data.data[i].med;
+                bonus = data.data[i].bonus;
+                spal = data.data[i].spal;
+                others = data.data[i].others;
+                tds = data.data[i].tds;
+                pt = data.data[i].pt;
+                pf = data.data[i].pf;
+                console.log(bs, hra, ta, da, med, bonus, spal,others,tds,pt,pf);
+                $('#bs').val(bs);
+                $('#hra').val(hra);
+                $('#ta').val(ta);
+                $('#da').val(da);
+                $('#med').val(med);
+                $('#bonus').val(bonus);
+                $('#spal').val(spal);
+                $('#others').val(others);
+                $('#tds').val(tds);
+                $('#pt').val(pt);
+                $('#pf').val(pf);
+                }
+            }
+        });
+    });
+    var today = new Date();
+    var month = (today.getMonth()+1);
+    var year = today.getFullYear();
+       
+    $('#save').click(function () {
+        var empid,bs, hra, ta, da, med, bonus, spal, others, tds, pt, pf;
+        empid = $("#employee option:selected").attr("data-id");
+        bs = $('#bs').val();
+        hra = $('#hra').val();
+        ta = $('#ta').val();
+        da = $('#da').val();
+        med = $('#med').val();
+        bonus = $('#bonus').val();
+        spal = $('#spal').val();
+        others = $('#others').val();
+        tds = $('#tds').val();
+        pt = $('#pt').val();
+        pf = $('#pf').val();
+       
+        console.log(empid, bs, hra, ta, da, med, bonus, spal, others, tds, pt, pf,month,year);
+        var data = [];
+        data.push(empid, bs, hra, ta, da, med, bonus, spal, others, tds, pt, pf,month,year);
+        console.log(data)
+        if (data == "") {
+            myToast("Enter your complete details !!",{color:'danger'});
+        }
+        else {
+            $.ajax({
+                url: 'add_salary_struc/',
+                type: 'POST',
+                headers: { "X-CSRFToken": getCookie("csrftoken") },
+                enctype: "multipart/form-data",
+                data: {
+                    'studentData': data,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.Status) {
+                        myToast(" Salary Structure Added Successfully !!",{color:'success'});
+                    }
+                    else {
+                        myToast("Please Try Again !!",{color:'danger'});
+                    }
+                }
+            });
+        }
+    });
+
+
+</script> {% endblock %}

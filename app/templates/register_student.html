@@ -1,0 +1,295 @@
+<style type="text/css">
+  	input {
+  		height: 30px;
+
+  		margin-left: 30px;
+  	}
+  </style>
+<div style="margin-bottom: -20px">
+	  <div class="" style="margin-left: 10px">
+    <a class="btn-floating waves-effect waves-light title-back-btn" onclick="window.history.back();" onmouseover="" style="cursor: pointer;">
+      <img src="/media/icons8-left-64.png" style="height: 45px;width: 45px; margin-bottom:5px;">  </a>
+     <span class="grey-text text-darken-2" style="font-size: 1.64rem;line-height: 52px; margin-left: 50px;">Add Students</span>
+    </div>
+</div>
+<hr>
+<div class="col s12 m12 l12 padding-right-0 " style="padding-bottom:10%;" style="display: inline-grid !important;">
+
+    <div class="table" >
+        <div class="card grey lighten-5 card_align_left">
+
+          <div class="card-content white-text list_view" style="height: auto;">
+            	
+            <div style="display: flex; float: left;height: 40px;margin-top: 10px">
+
+
+         
+                  	<input placeholder="First name..." oninput="this.className = ''" class="form-control" id="fname" name="fname" style="width:340px;">
+    
+	
+	              	<input placeholder="Middle name..." oninput="this.className = ''" class="form-control" id="mname" name="mname" style="width:340px;">
+   			</div>	
+
+   			<div style="display: flex; float: left;height: 40px;margin-top: 10px">
+	               	<input placeholder="Last name..." oninput="this.className = ''" class="form-control" name="lname" id="lname" style="width:340px;">
+     
+	
+	              	<input placeholder="Mother's/Father's/Guardian's name..." oninput="this.className = ''" class="form-control" name="mother_name" id="mother_name" style="width:340px;">
+    		</div>
+    		<div style="display: flex; float: left;height: 40px;margin-top: 10px">
+					<label style="margin-left: 30px">Date Of Birth:</label>
+	              	<input placeholder="Date Of Birth..." oninput="this.className = ''" class="form-control" name="date_of_birth" id="date_of_birth" type="date" style="width: 241px;margin-left: 1px" >
+	              	
+	              	<label style="margin-left: 30px">Image:</label>
+	              	<input type="file" name="image" style="width: 240px;">
+           	</div>
+
+           	<div style="display: flex; float: left;height: 40px;margin-top: 10px">
+	          		<input placeholder="Mobile No..." oninput="this.className = ''" class="form-control" name="mobile_no" id="mobile_no" maxlength="10" style="width: 340px;">
+                
+                  	<input placeholder="Adhar Number..." oninput="this.className = ''" class="form-control" name="adhar_no" id="adhar_no" maxlength="12" style="width: 340px;">    
+    		</div>
+
+    		<div style="display: flex; float: left;height: 40px;margin-top: 10px">
+      			
+				<select name="blood_group" id="blood_group" style="height: 30px; width: 340px; background-color: white;margin-left: 30px" class="form-control">
+			  	<option value="" selected disabled="">Blood Group</option>
+			  	<option value="A+">A+</option>
+				<option value="A+">A-</option>
+				<option value="B+">B+</option>
+				<option value="B-">B-</option>
+				<option value="AB+">AB+</option>
+				<option value="AB-">AB-</option>
+				<option value="O+">O+</option>
+				<option value="O-">O-</option>
+				</select>
+
+				<input placeholder="Nationality..." oninput="this.className = ''" class="	form-control" name="nationality" id="nationality" style="width: 340px">	
+				
+	    </div>
+
+	    <div style="display: flex; float: left;height: 40px;margin-top: 10px">
+	    	
+           <input placeholder="Communication Address..." oninput="this.className = ''" class="form-control" name="c_address" id="c_address" style="width: 340px;">
+			
+			<input placeholder="Permanent Address..." oninput="this.className = ''" class="form-control" name="p_address" id="p_address" style="width: 340px;">
+	    </div>
+
+	    <div style="display: flex; float: left;height: 40px;margin-top: 10px">
+	    	<input placeholder="Mother Tongue..." oninput="this.className = ''" class="form-control" name="mother_tongue" id="mother_tongue" style="width: 340px">
+	      	
+	      	<select name="gender" id="gender" style="height: 30px; width: 340px; background-color: white;margin-left: 30px" class="form-control">
+				<option value="" selected disabled>Gender</option>
+				<option value="m">Male</option>
+				<option value="f">Female</option>
+				<option value="o">Other</option>
+				</select>
+	    </div>
+	    
+
+      </div>
+    </div>
+</div>	
+
+
+
+ <div class="col s12 m12 l12 padding-right-0 " style="padding-bottom:10%;" style="display: inline-grid !important;">
+
+    <div class="table" >
+      <div class="card grey lighten-5 card_align_left">
+
+          <div class="card-content white-text list_view" style="height: auto;">
+            
+
+	    <div style="display: flex;float: left;height: 40px;margin-top: 10px">
+	    	
+	    	<input placeholder="Student Class .../Optional..." oninput="this.className = ''" class="form-control" name="student_class" id="student_class" style="width: 340px">
+	    	<input placeholder="Section...(Optional)" oninput="this.className = ''" class="form-control" name="section" id="section" style="width: 340px;">
+            
+        </div>
+
+        <div style="display: flex;float: left;height: 40px;margin-top: 10px">
+        	
+			
+				
+        </div>
+
+
+        <div style="display: flex;float: left;height: 40px;margin-top: 10px">
+        	<input placeholder="Religion..." oninput="this.className = ''" class="form-control" name="religion" id="religion" style="width: 340px">
+			
+			<select name="caste" id="caste" style="height: 30px; width: 340px; background-color: white;margin-left: 30px" class="form-control">
+				<option value="" selected disabled="">Caste</option>
+				<option value="open">Open/General</option>
+				<option value="ABC">ABC</option>
+				<option value="XYZ">XYZ</option>
+				<option value="PQR">PQR</option>
+				</select> <br><br>
+        </div>
+
+        <div style="display: flex;float: left;height: 40px;margin-top: 10px">
+        	<input placeholder="House..." oninput="this.className = ''" class="form-control" name="house" id="house" style="width: 340px;">
+			
+			<input placeholder="Roll Number..." oninput="this.className = ''" class="form-control" name="roll_no" id="roll_no" maxlength="6" style="width: 340px;">
+        </div>
+
+        <div style="display: flex;float: left;height: 40px;margin-top: 10px">
+        	<input placeholder="GR Number..." oninput="this.className = ''" class="form-control" name="gr_no" id="gr_no" maxlength="10" style="width: 340px;">
+            <label style="margin-left: 30px">Addmission Date:</label>
+            <input placeholder="Date Of Addmission..." oninput="this.className = ''" class="form-control" name="date_of_addmission" id="date_of_addmission" type="date" style="width: 205px;margin-left: 10px">
+        </div>
+
+        <div style="display: flex;float: left;height: 40px;margin-top: 10px">
+        	<input placeholder="special quota..." oninput="this.className = ''" class="form-control" name="special_quota" id="special_quota" style="width: 340px">
+        	<input placeholder="Student Type..." oninput="this.className = ''" class="form-control" name="student_type" id="student_type" style="width: 340px;">
+       		
+       		<input type="button" class="btn btn-info" id="submit_form" value="Submit" name="submit" style="border-radius: 10px 10px;height: 30px;width: 100px">
+        </div>
+
+
+
+      </div>	
+     </div>	
+    </div>
+  </div>
+  <script>
+
+
+  $(document).ready(function () {
+	 $("#mobile_no").forceNumeric();
+	 $("#adhar_no").forceNumeric();
+	 $("#roll_no").forceNumeric();
+	 $("#gr_no").forceNumeric();
+  });
+
+  // forceNumeric() plug-in implementation
+  jQuery.fn.forceNumeric = function () {
+	 return this.each(function () {
+		 $(this).keydown(function (e) {
+			 var key = e.which || e.keyCode;
+
+			 if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+			 // numbers   
+				 key >= 48 && key <= 57 ||
+			 // Numeric keypad
+				 key >= 96 && key <= 105 ||
+			 // comma, period and minus, . on keypad
+				key == 190 || key == 188 || key == 109 || key == 110 ||
+			 // Backspace and Tab and Enter
+				key == 8 || key == 9 || key == 13 ||
+			 // Home and End
+				key == 35 || key == 36 ||
+			 // left and right arrows
+				key == 37 || key == 39 ||
+			 // Del and Ins
+				key == 46 || key == 45)
+				 return true;
+
+			 return false;
+		 });
+	 });
+  }
+
+	/*
+	* Logic For Submitting form Data
+	*/
+	var studentData = [];
+	studentData.push($("#fname").val());
+	studentData.push($("#mname").val());
+	studentData.push($("#lname").val());
+	studentData.push($("#mother_name").val());
+	var date = new Date($('#date_of_birth').val());
+	day = date.getDate();
+	month = date.getMonth() + 1;
+	year = date.getFullYear();
+	studentData.push(day+"/"+month+"/"+year);
+	studentData.push($("#blood_group").val());
+	studentData.push($("#caste").val());
+	studentData.push($("#mobile_no").val());
+	studentData.push($("#nationality").val());
+	studentData.push($("#religion").val());
+	studentData.push($("#mother_tongue").val());
+	studentData.push($("#adhar_no").val());
+	studentData.push($("input[name=gender]:checked").val());
+	studentData.push($("#c_address").val());
+	studentData.push($("#p_address").val());
+	studentData.push($("#house").val());
+	studentData.push($("#roll_no").val());
+	studentData.push($("#gr_no").val());
+	var doa = new Date($('#date_of_addmission').val());
+	day = doa.getDate();
+	month = doa.getMonth() + 1;
+	year = doa.getFullYear();
+	studentData.push(day+"/"+month+"/"+year);
+	studentData.push($("#special_quota").val());
+	studentData.push($("#student_type").val());
+	studentData.push($("#student_class").val());
+	studentData.push($("#section").val());
+	console.log(studentData);
+	var url_for_add = ip+"dashboard/register_students";
+	//Sending Ajax Request here
+	$.ajax({
+		url: url_for_add,
+		type: "POST",
+		headers: { "X-CSRFToken": getCookie("csrftoken") },
+		enctype:"multipart/form-data",
+		data: {
+			'studentData' : studentData,
+		},
+		success: function (response) {
+			console.log(response);
+			location.reload();
+			alert("Successfully Added!");
+		},
+		error: function (response) {
+			alert("Student Registration Failed, you may have filled some data wrong.")
+			console.log(response);
+		},
+	  });//End of ajax request
+	return true;
+  }
+  // Otherwise, display the correct tab:
+  //jquery animation on the form
+
+  var div = $("form");
+		// div.animate({height: '100px', opacity: '0.4'}, "slow");
+		// div.animate({width: '80px', opacity: '0.8'}, "slow");
+		// div.animate({height: '520px', opacity: '1'}, "slow");
+		// div.animate({width: '45%', opacity: '1'}, "slow");
+ 	 showTab(currentTab);
+  }
+
+  function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+	// If a field is empty...
+	if (y[i].value == "") {
+	  // add an "invalid" class to the field:
+	  y[i].className += " invalid";
+	  // and set the current valid status to false
+	  valid = false;
+	}
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+	document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+  }
+
+  function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+	x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+  }
+  </script>
+
+</div>

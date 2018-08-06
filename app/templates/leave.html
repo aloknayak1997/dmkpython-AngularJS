@@ -1,0 +1,194 @@
+{% extends 'base.html' %} {% block title %} Apply Leave {% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/hr_style.css'%}">
+<style>
+    .in-feilds {
+   display: inline-grid;
+   margin: 2%;
+}
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+        <div class="data-head">
+            <span>Apply Leave</span>
+        </div>
+<form method="POST" class="data">
+    {% csrf_token %}
+    <div class="in-feilds">
+        <span style="display:inline-flex; margin-bottom:2px; font-size: 11px;">Employee</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-user"></i>
+            </span>
+
+            <select id="employee" class="input">
+                <optgroup>
+                    {% for user in data %}
+                    <option data-id={{user.id}} value={{user.first_name}}>{{user.first_name}}</option>
+                    {% endfor %}
+                </optgroup>
+            </select>
+        </div>
+    </div>
+    <div class="in-feilds">
+        <span style="display:inline-flex; margin-bottom:2px; font-size: 11px;">Leave Type</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-plane-departure"></i>
+            </span>
+
+            <!-- <select id="leaves" disabled class="input"> -->
+            <select id="leaves" class="input">
+                    <option selected disabled hidden>Select Leaves</option>
+                    {% for i in leaves%}
+                    <option class="empleaves" value="{{i.leave_name}}" leavenum="{{i.leaves_remaining}}" data-id="{{i.emp_id}}">{{i.leave_name}}</option>
+                    {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="in-feilds">
+        <span style="display:inline-flex; margin-bottom:2px; font-size: 11px;">Leave Remaining</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-plane-departure"></i>
+            </span>
+            <span class="leavesremain" style=" border: none; padding: 7px; border-radius: 0 8px 8px 0px; background: white; color: #757479; ">{{cll}}</span>
+        </div>
+    </div>
+    
+    <div class="in-feilds">
+        <span style="display:inline-flex;  margin-bottom:2px; font-size: 11px;">Start Date</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-calendar-alt"></i>
+            </span>
+            <input id="start-date" oninput="this.className = ''" class="" name="date_of_birth" type="date">
+        </div>
+    </div>
+
+    <div class="in-feilds">
+        <span style="display:inline-flex;  margin-bottom:2px; font-size: 11px;">End Date</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-calendar-alt"></i>
+            </span>
+            <input id="end-date" oninput="this.className = ''" class="" name="date_of_birth" type="date">
+        </div>
+    </div>
+    
+
+    <div class="in-feilds">
+        <span style="display:inline-flex;  margin-bottom:2px; font-size: 11px;">Reason</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-pen-alt"></i>
+            </span>
+            <textarea id="reason" style="width: 327px;border-radius: 0 7px 0 0;height: 63px;"></textarea>
+        </div>
+    </div>
+    <input id="save" type="button" value="Add" />
+</form>
+<script>
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+                return unescape(document.cookie.substring(c_start, c_end));
+            }
+        }
+        return "";
+    }
+
+    var empid, leaveid, fullstartdate, fullenddate, leavetype, employee, reason;
+    var date1, date2,cll="",pll="",sll="";
+    $("#start-date").change(function () {
+        date1 = new Date($('#start-date').val());
+        day = date1.getDate();
+        month = date1.getMonth() + 1;
+        year = date1.getFullYear();
+        fullstartdate = [day, month, year].join('/');
+    });
+    $("#end-date").change(function () {
+        date2 = new Date($('#end-date').val());
+        day = date2.getDate();
+        month = date2.getMonth() + 1;
+        year = date2.getFullYear();
+        fullenddate = [day, month, year].join('/');
+
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        
+        console.log(days);
+
+    });
+    $("select#employee").change(function () {
+        employee = $("#employee option:selected").val();
+        empid = $("#employee option:selected").attr("data-id");
+        var data = [];
+        data.push(empid);
+        var opts = document.getElementsByClassName('empleaves');
+        for(i=0;i<opts.length;i++){
+            if(opts[i].getAttribute('data-id') != empid){
+                opts[i].style.display = "none";
+                $(".leavesremain").html(' ');
+            }
+        }
+        
+        // $("select#leaves").prop('disabled', false);
+
+    });
+    $("select#leaves").change(function () {
+        leavetype = $("#leaves option:selected").val();
+        leaveid = $("#leaves option:selected").attr("data-id");
+        leaveremain = $("#leaves option:selected").attr("leavenum");
+        $('.leavesremain').text(leaveremain);
+    });
+
+    $('#save').click(function () {
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        console.log(days);
+        if($('.leavesremain').text()=='0') {
+        myToast("You  don't have any leave remaining !!",{color:'danger'});
+        }
+        else if($('.leavesremain').text()< days){
+        myToast("You can't take more than remaining leaves you have !!",{color:'danger'});
+        }
+        else{
+        reason = document.getElementById("reason").value;
+        var data = [];
+        data.push(empid, employee, leavetype, fullstartdate, fullenddate, reason, days, leaveid);
+        console.log(data);
+
+        if (data == "") {
+            myToast("Please Enter Complete Info !!",{color:'danger'});
+        }
+        else {
+            $.ajax({
+                url: 'addleave/',
+                type: 'POST',
+                headers: { "X-CSRFToken": getCookie("csrftoken") },
+                enctype: "multipart/form-data",
+                data: {
+                    'studentData': data,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.Status) {
+                        myToast("Success !!",{color:'success'});
+                    }
+                    else {
+                        myToast("Please Try Again !!",{color:'danger'});
+                    }
+                }
+            });
+        }
+    }
+    });
+
+
+</script> {% endblock %}

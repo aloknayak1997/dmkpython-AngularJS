@@ -1,0 +1,238 @@
+<style>
+    .one-class {
+        display: inline-flex;
+        background: #d3d3d34f;
+        padding: 4px;
+        margin: 3px;
+        border-radius: 20px;
+        transform: scale(0.87)
+    }
+
+
+    .md-padding.selectdemoSelectHeader {
+        padding: 5% 0 0 34px;
+    }
+
+    .tab {
+        margin-left: 3px;
+    }
+
+    .accordion {
+        padding: 6px;
+    }
+
+    md-input-container.md-icon-float.md-block {
+        margin: 0 0 0 21px;
+    }
+
+    .panel {
+        display: table-column-group;
+    }
+
+    .md-errors-spacer {
+        float: none !important;
+        font-size: 14px;
+    }
+
+    .fee {
+        display: inline-flex;
+        margin: 0 9px;
+        background: white;
+        padding: 5px;
+        border-radius: 24px;
+    }
+
+
+    div.tab {
+        background: #fff;
+        border-radius: 20px;
+        padding: 5px;
+        display: inline-flex;
+    }
+
+    .discount {
+        background: #0fdea5;
+        padding: 1px 7px;
+        box-shadow: 1px 1px 20px -10px #000000;
+        float: right;
+        color: #fff;
+    }
+
+    span.month:hover {
+        background: #4c4a4a3d;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    div#generatedfees {
+        margin: 0 31px;
+    }
+
+    i.far.fa-times-circle {
+        margin: 3px;
+    }
+
+    .choices {
+        overflow-x: scroll;
+        background: #fff;
+        display: inline-grid;
+        padding: 0 20px;
+        color: #5c5555;
+        border-radius: 16px;
+        max-height: 34%;
+        box-shadow: 1px 1px 20px -8px;
+
+    }
+
+    .fee-tab {
+        display: inline-grid;
+        padding: 10px;
+        box-shadow: 1px 1px 20px -10px;
+        margin: 10px 15px;
+        border-radius: 15px;
+        max-height: 185px;
+        border: 0.8px solid #0fdea5;
+        width: 28%;
+    }
+
+
+    input.amount {
+        width: 44%;
+        border-radius: 15px;
+        border: 1px solid #0000004a;
+        padding: 0px 10px;
+        transform: scale(0.9);
+        margin-left: 8px;
+    }
+
+    .amount-tab {
+        margin: 18px 0 0 0;
+    }
+
+    select.months {
+        border-radius: 8px;
+    }
+
+    .demo-select-all-checkboxes.mop.ng-scope.flex-100 {
+        margin: 0 13px;
+    }
+
+    md-checkbox {
+        margin-top: 13px;
+    }
+
+    span.month {
+        margin: 5px 0 0 0;
+        background: #74747426;
+        border-radius: 20px;
+        padding: 0 12px;
+    }
+
+    /* .op-active {
+        background: #6a05ff;
+        color: #fff;
+        font-weight: 700;
+        margin: 4px 0;
+        border-radius: 5px;
+        padding: 3px;
+        box-shadow: 1px 1px 20px -5px #000000;
+    } */
+</style>
+<div style="margin-bottom: -13px">
+    <div class="" style="margin-left: 10px">
+        <a class="btn-floating waves-effect waves-light title-back-btn" onclick="window.history.back();" onmouseover="" style="cursor: pointer;">
+            <img src="/media/icons8-left-64.png" style="height: 45px;width: 45px; margin-bottom:5px;"> </a>
+        <span class="grey-text text-darken-2" style="font-size: 1.64rem;line-height: 52px; margin-left: 50px;">Pay Fee</span>
+    </div>
+</div>
+<hr>
+
+<div class="col s12 m12 l12 padding-right-0 " style="padding-bottom:10%;">
+
+    <div class="table">
+        <div class="card lighten-5 card_align_left">
+            <div class="card-content white-text list_view">
+                <!--Student list view-->
+
+                <div style="display: inline;">
+                    <div class="md-padding selectdemoSelectHeader" ng-cloak="">
+                        <div>
+                            <div layout="row">
+
+                                <md-input-container style="width: 150px !important">
+                                    <label>Class</label>
+                                    <md-select ng-blur="getfeeAndstudent()" placeholder="Class" ng-model="selectedclass" data-md-container-class="selectdemoSelectHeader">
+                                        <md-option data-id="{{x.id}}" ng-repeat="x in classes" value={{x.class}}>{{x.class}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <md-input-container style="width: 150px !important">
+                                    <label>Student</label>
+                                    <md-select placeholder="Student" ng-model="selectedstudent" data-md-container-class="selectdemoSelectHeader">
+                                        <md-option class="students" ng-repeat="x in students" value={{x.student}} stud-id={{x.user_id}}>{{x.student}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+
+
+                                <md-input-container>
+                                    <label>Fees</label>
+                                    <md-select placeholder="Fees" ng-blur="" ng-model="selectedfees" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader"
+                                        multiple>
+                                        <md-select-header class="demo-select-header">
+                                            <input id="search-filter" ng-model="searchTerm" type="search" placeholder="Search for a Fees.." class="demo-header-searchbox md-text">
+                                        </md-select-header>
+                                        <md-optgroup label="fees">
+                                            <md-option class="fees" data-id="{{x.id}}" amount="{{x.amount}}" cycle="{{x.cycle}}" name="{{x.fee}}" ng-repeat="x in fees |filter:searchTerm">{{x.fee}}</md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+                                <div ng-dropdown-multiselect="" options="example14data" selected-model="example14model" checkboxes="true" extra-settings="example14settings"></div>
+
+                                <div style="padding: 15px 24px;margin: -8px 0 0 12px;">
+                                    <md-button md-no-ink class="md-raised md-primary" ng-click="fee()">Submit</md-button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-content white-text list_view" style="background: #f8f6f647">
+                <div class="selectdemoSelectHeader" style="display: none;" ng-cloak="">
+                    <div id="fee_tabs">
+
+                    </div>
+                    <div style='padding: 15px 24px;margin: 14px 0 0 12px;display:  inline-flex;'>
+                        <md-button md-no-ink class='md-raised md-primary' ng-click='pay()'>Pay</md-button>
+                        <div class="demo-select-all-checkboxes mop" flex="100" ng-repeat="item in items">
+                            <md-checkbox class="mode" data-id="{{item.id}}" ng-checked="exists(item.mode, selected)" ng-click="toggle(item.mode, selected)">
+                                {{ item.mode }}
+                            </md-checkbox>
+                        </div>
+                        <div class="total"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document.body).on('click', 'span', function () {
+        if ($(this).children('.months').prop('disabled')) {
+
+        }
+        else {
+            if ($(this).children('.months').prop('checked')) {
+                $(this).children('.months').prop('checked', false);
+                $(this).children('.months').trigger('click');
+                $(this).removeClass('op-active');
+            }
+            else {
+                $(this).children('.months').prop('checked', true);
+                $(this).children('.months').trigger('click');
+                $(this).addClass('op-active');
+            }
+        }
+    });
+</script>

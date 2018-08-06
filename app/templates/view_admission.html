@@ -1,0 +1,79 @@
+<div style="display: inline-block;margin-bottom: -20px;">
+    <a class="btn-floating waves-effect waves-light title-back-btn" onclick="window.history.back();" onmouseover="" style="cursor: pointer;display: inline-block;">
+        <img src="/media/icons8-left-64.png" style="height: 45px;width: 45px; margin-bottom:5px;">
+    </a>
+
+    <span class="grey-text text-darken-2" style="font-size: 1.64rem;line-height: 52px; margin-left: 50px;">List of admission enquiries</span>
+</div>
+<hr>
+<input class="form-control" id="myInput" type="text" style="width: 400px; margin: 10px;border-color: black" placeholder="Search..">
+
+<div class="col s12 m12 l12 padding-right-0 " style="padding-bottom:10%;">
+
+    <div class="table">
+        <div class="card grey lighten-5 card_align_left">
+            <div class="card-content white-text list_view">
+                <!--Student list view-->
+                <div id="student_list_view">
+
+                    <table border="0" style="border: 0px solid grey; background-color:white; width: 1000px; font-size: 15px" class="table table-hover table-borderless bordered vertical_striped tablesorter">
+                        <thead>
+                            <th style="background-color: lightgrey">Id</th>
+                            <th style="background-color: lightgrey">Name</th>
+                            <th style="background-color: lightgrey">Gender</th>
+                            <th style="background-color: lightgrey">DOB</th>
+                            <th style="background-color: lightgrey">Applyid for Class</th>
+                            <th style="background-color: lightgrey">Email</th>
+                            <th style="background-color: lightgrey">Parent Name</th>
+                            <th style="background-color: lightgrey">Mobile</th>
+                            <th style="background-color: lightgrey">Percentage</th>
+                        </thead>
+                        <tbody id="myTable">
+                            <tr data-id="{{form.id}}" class='clickable-row' id="">
+                                <td style="background-color: #e5e5e5"></td>
+                                <td id="name">
+                                    <a style="color: blue" target="_blank" href="dashboard/student_profile"
+                                        id="student_name"> </a>
+                                </td>
+
+                                <td style="background-color: #e5e5e5">{
+                                </td>
+                                <td></td>
+                                <td style="background-color: #e5e5e5">
+                                </td>
+                                <td></td>
+                                <td style="background-color: #e5e5e5"></td>
+                                <td id="phone"></td>
+                                <td style="background-color: #e5e5e5" data-id="{{form.form_content}}" class="percentage"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+        //this script for filter the searchbox data of list institute form
+            $(document).ready(function () {
+                $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+
+                $('td.percentage').each(function () {
+                    // var x = {};
+                    var x = $(this).attr('data-id');
+                    // var json =[
+                    var obj = JSON.parse(x);
+                    // x=x.replace(/"(\w+)"\s*:/g, '$1:');
+                    console.log(obj);
+                    $(this).text(obj.percentage + "%");
+                });
+            });
+            function fetch() {
+
+                alert("s");
+
+            }
+        </script>

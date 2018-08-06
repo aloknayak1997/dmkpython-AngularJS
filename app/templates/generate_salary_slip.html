@@ -1,0 +1,271 @@
+<link rel="stylesheet" href="{% static '/css/hr_style.css'%}">
+<style>
+    .in-feilds {
+        display: inline-grid;
+        margin: 2%;
+    }
+
+    .multiselect {
+        width: 200px;
+    }
+
+    .selectBox {
+        position: relative;
+        border: none;
+        padding: 7px;
+        border-radius: 0 8px 8px 0px;
+        background: white;
+        color: #757479;
+    }
+
+    .selectBox select {
+        width: 100%;
+        font-weight: bold;
+        border: none;
+        padding: 7px;
+        border-radius: 0 8px 8px 0px;
+        background: white;
+        color: #757479;
+    }
+
+    .overSelect {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    .main {
+        display: block !important;
+    }
+
+
+    #checkboxes {
+        display: none;
+        position: absolute;
+        border: 1px #dadada solid;
+        width: 200px;
+        border: none;
+        padding: 7px;
+        border-radius: 8px;
+        box-shadow: 1px 1px 20px -10px;
+        background: white;
+        color: #757479;
+    }
+
+    #checkboxes label {
+        display: block;
+        padding: 3px;
+    }
+
+    table.table {
+        margin: 3% 15% 0% 0%;
+        box-shadow: 1px 1px 20px -8px;
+    }
+
+    /* td,
+    tr {
+        padding: 3%;
+    } */
+
+    #checkboxes label:hover {
+        background-color: #757479;
+        color: #fff;
+    }
+
+    @media print{
+        table tr th{
+           color: black !important; 
+        }
+    }
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+    crossorigin="anonymous">
+<div class="data-head">
+    <span>Generate Salary Pay Slip</span>
+</div>
+<div class="data">
+    <div class="in-feilds">
+        <span style="display:inline-flex; margin-bottom:2px; font-size: 11px;">Employee</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-user"></i>
+            </span>
+
+            <select id="employee" class="input">
+                <optgroup>
+                    <option data-id={{user.id}} value={{user.first_name}}>{{user.first_name}}</option>
+                </optgroup>
+            </select>
+        </div>
+    </div>
+    <!-- <div class="in-feilds">
+        <span style="display:inline-flex; margin-bottom:2px; font-size: 11px;">Select Month</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-plane-departure"></i>
+            </span>
+            <div class="multiselect">
+                <div class="selectBox">
+                    <select>
+                        <option>Select an option</option>
+                    </select>
+                    <div class="overSelect"></div>
+                </div>
+                <div id="checkboxes">
+                    {% for month in months %}
+                    <label for="one">
+                        <input name="month" type="checkbox" data-id={{month}} />{{month}}</label>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="in-feilds">
+        <span style="display:inline-flex; margin-bottom:2px; font-size: 11px;">Select Month</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-plane-departure"></i>
+            </span>
+
+            <select id="months" class="input">
+                <optgroup>
+                    <option value={{forloop.counter}}>{{month}}</option>
+                </optgroup>
+            </select>
+        </div>
+    </div>
+    <div class="in-feilds">
+        <span style="display:inline-flex; margin-bottom:2px; font-size: 11px;">Select Year</span>
+        <div class="input-feilds">
+            <span class="fa-icons">
+                <i class="fas fa-plane-departure"></i>
+            </span>
+
+            <select id="years" class="input">
+                <optgroup>
+                    <option value={{i}}>{{i}}</option>
+                </optgroup>
+            </select>
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="generate">
+            <span style="display:inline-flex; margin-bottom:2px; ">Generate</span>
+            <i class="fas fa-cogs"></i>
+        </div>
+    </div>
+</div>
+<div class="data">
+    <div class="generate" id="print" style="display: none;float: right;" onclick="printDiv('slip')">
+        <span style="display:inline-flex; margin-bottom:2px; ">Print</span>
+        <i class="fas fa-print"></i>
+    </div>
+    <div class="slip" id="slip">
+        
+    </div>
+</div>
+<script>
+    var year, month;
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+    var checkboxes = document.getElementById("checkboxes");
+    $('.selectBox').click(function () {
+        $(checkboxes).toggleClass("main");
+    });
+
+    $("select#employee").change(function () {
+        employee = $("#employee option:selected").val();
+    });
+    $("select#years").change(function () {
+        year = $("#years option:selected").val();
+        console.log(year);
+    });
+    $("select#months").change(function () {
+        month = $("#months option:selected").val();
+        console.log(month);
+    });
+
+
+    $('.generate').click(function () {
+
+        empid = $("#employee option:selected").attr("data-id");
+        var data = [];
+        $('#print').css('display','inline-flex');
+        data.push(empid, month, year);
+        $.ajax({
+            url: ip+'slipstructure/',
+            type: 'POST',
+            headers: { "X-CSRFToken": getCookie("csrftoken") },
+            enctype: "multipart/form-data",
+            data: {
+                'studentData': data,
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.Status) {
+                    name = data.name;
+                    desg = data.desg;
+                    for(i=0;i<data.data.length;i++){
+                    bs = parseInt(data.data[i].basic);
+                    hra = parseInt(data.data[i].hra);
+                    ta = parseInt(data.data[i].ta);
+                    da = parseInt(data.data[i].da);
+                    med = parseInt(data.data[i].med);
+                    bonus = parseInt(data.data[i].bonus);
+                    spal = parseInt(data.data[i].spal);
+                    others = parseInt(data.data[i].others);
+                    tds = parseInt(data.data[i].tds);
+                    pt = parseInt(data.data[i].pt);
+                    pf = parseInt(data.data[i].pf);
+                    console.log(name, bs, hra, ta, da, med, bonus, spal, others, tds, pt, pf);
+                    totalearn = bs + hra + ta + da + med + bonus + spal + others;
+                    totaldeduction = tds + pt + pf;
+                    net_amount = totalearn - totaldeduction;
+                    // {% for i in institute%}
+                    var slip = "<div><h2>{{i.name}}</h2><span>{{i.address}}</span>";
+                    html = "<div style='border: 1px solid; width: 73%; margin: 0 0 0 10%;'>";
+                    html += "<div style='margin: 0 18%;display:  inline-flex;'>"
+                    html += "<img src='{{i.logo}}' style='width: 14%;height:  1%;'>";
+                    html += "<div style='margin:10px;'>";
+                    html += "<div style='font-weight: 700;margin:  0 23%;'> {{i.name}}</div>";
+                    html += "<div style='font-weight: 700;font-size: 10px;margin: 0 0%;'>{{i.address}}</div></div>";
+                    html += "</div>";
+                    html += "<table style='margin: 2% 18%;' border='1'>";
+                    html += "<th colspan='14' style='background: #3a3434; color: #ffff;text-align: center;'>Salary Slip</th>";
+                    html += "<tr><td colspan='9' style='border-right: none; border-bottom: none;'>Employee Name</td><td colspan='5' style='border-left: none;'>" + name + "</td></tr>";
+                    html += "<tr><td colspan='9' style='border-right: none; border-bottom: none;'>Designation</td><td colspan='5' style='border-left: none;'>" + desg + "</td></tr>";
+                    html += "<th colspan='4' style='text-align: center;'>Earnings</th><th colspan='3' style='text-align: center;'>Amount Rs.</th><th colspan='4' style='text-align: center;'>Deductions</th><th colspan='7' style='text-align: center;'>Amount Rs.</th>";
+                    html += "<tr><td colspan='5'>Basic</td><td colspan='2'>" + bs + "</td><td colspan='5'>TDS</td><td colspan='2'>"+tds+"</td></tr>";
+                    html += "<tr><td colspan='5'>HRA</td><td colspan='2'>" + hra + "</td><td colspan='5'>PT</td><td colspan='2'>"+pt+"</td></tr>";
+                    html += "<tr><td colspan='5'>TA</td><td colspan='2'>" + ta + "</td><td colspan='5'>PF</td><td colspan='2'>"+pf+"</td></tr>";
+                    html += "<tr><td colspan='5'>DA</td><td colspan='2'>" + da + "</td><td colspan='5'></td><td colspan='2'></td></tr>";
+                    html += "<tr><td colspan='5'>MED</td><td colspan='2'>" + med + "</td><td colspan='5'></td><td colspan='2'></td></tr>";
+                    html += "<tr><td colspan='5'>SPAL</td><td colspan='2'>" + spal + "</td><td colspan='5'></td><td colspan='2'></td></tr>";
+                    html += "<tr><td colspan='5'>bonus</td><td colspan='2'>" + bonus + "</td><td colspan='5'></td><td colspan='2'></td></tr>";
+                    html += "<tr><td colspan='5'>Others</td><td colspan='2'>" + others + "</td><td colspan='5'></td><td colspan='2'></td></tr>";
+                    html += "<tr><td colspan='5'></td><td colspan='2'></td><td colspan='5'><b>Total Deduction</b></td><td colspan='2'>" + totaldeduction + "</td></tr>";
+                    html += "<tr><td colspan='12' style='border-right: none; border-bottom: none;'><b>Gross</b></td><td colspan='5' style='border-left: none;text-align: center;'>" + totalearn + "</td></tr>";                 
+                    html += "<tr style='background: #3a3434; color: #ffff;'><td colspan='12' style='border-right: none; border-bottom: none;'><b>Net Salary</b></td><td colspan='5' style='border-left: none;text-align: center;'>" + net_amount + "</td></tr>";
+                    html += "</table>";
+                    //  {% endfor%}
+                    $('.slip').html(html);
+                    }
+            }
+            else{   
+                slip="<h2>Salary details not avialable for selected month & year</h2>";
+                $('.slip').html(slip);
+            }
+            }
+        });
+    });
+</script> {% endblock %}

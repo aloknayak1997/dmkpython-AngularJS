@@ -1,0 +1,77 @@
+<!-- Page Heading Start-->
+  <div class="breadcrumbs shadow-0">
+    <div class="breadcrumbs-inner">
+      <div class="row m-0">
+        <div class="col-sm-4">
+          <div class="page-header float-left">
+            <div class="page-title">
+              <h1>View Classes</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="page-header float-right">
+            <div class="page-title">
+              <ol class="breadcrumb text-right">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="{% url 'class_user_profiling:viewdept' %}">Departments</a></li>
+                <li class="active">View Classes</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Heading End-->
+  <!-- Page Content Goes Here-->
+  <div class="content mt-3">
+    <div class="row">
+      <div class="col-md-12 append-classes">
+
+      </div>
+      <div class="col col-md-12 err-info"></div>
+    </div>
+  </div>
+  <script>
+
+    $(document).ready(function(){
+        $('.append-classes,.err-info').empty();
+        $.ajax({
+            url: ip+'/profiling/class-details/dep_id',
+            method: "GET",
+            data:{}
+        }).done(function(resp) {
+          var d = '', class_map = {};
+            if(!isEmpty(resp.data)){
+              $.each(resp.data,function(index,value){
+                d+= '<div class="card col-sm-12 col-md-5 col-lg-3 mx-4 my-2">'
+                      +'<h6 class="card-title pl-3 py-2 bg-dark text-white text-truncate">'+index+'</h6>'
+                      +'<div class="card-body">'
+                        +'<ul class="list-group">'
+                          +'<li class="list-group-item d-flex justify-content-between align-items-center p-2">Total Student\'s<span class="badge badge-primary">0</span></li>'
+                          +'<li class="list-group-item d-flex justify-content-between align-items-center p-2">Total Teacher\'s<span class="badge badge-primary">0</span></li>'
+                        +'</ul>'
+                      +'</div>'
+                      +'<div class="card-footer px-1 py-1">';
+                      $.each(value,function (key,val) {
+                        d+='<a href="/profiling/class-info/{{dep_id}}/'+val.id+'" class="btn btn-outline-dark btn-sm py-1 mr-1" style="border-color:#ccc !important">'+key+'</a>';
+                      });
+                      d+='</div>'
+                    +'</div>';
+              });
+              $('.append-classes').html(d);
+            }else{
+              $('.err-info').html('<div class="alert alert-danger" role="alert"><h4 class="alert-heading">Oops...</h4><p>No classes were found please <a href="{% url "class_user_profiling:addclass" %}" class="alert-link">click here</a> to add new classes!<p></div>');
+            }
+        }).fail(function(err) {
+          var msg = "Oops something went wrong!!!";
+          if (err.responseJSON) {
+            console.log(err.responseJSON);
+            // (err.responseJSON.non_field_errors) ? msg = err.responseJSON.non_field_errors.join():false;
+          }
+          myToast(msg,{color:'danger',duration:2000});
+        });
+    });
+  </script>
+  <script src="static/js/dpy_classprofiling.js"></script>

@@ -1,0 +1,91 @@
+  <!-- Page Heading Start-->
+  <div class="breadcrumbs shadow-0">
+    <div class="breadcrumbs-inner">
+      <div class="row m-0">
+        <div class="col-sm-4">
+          <div class="page-header float-left">
+            <div class="page-title">
+              <h1>View Departments</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="page-header float-right">
+            <div class="page-title">
+              <ol class="breadcrumb text-right">
+                <li><a href="/">Dashboard</a></li>
+                <li class="active">View Departments</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Heading End-->
+  <!-- Page Content Goes Here-->
+  <div class="content mt-3">
+    <div class="row">
+      <div class="col-md-12 card-deck append-departments">
+      </div>
+    </div>
+  </div>
+  <script>
+    var profiling_urls = {
+      'addclass':'{% url "class_user_profiling:class" %}',
+      'addsession':'{% url "class_user_profiling:session" %}',
+      'addsessionsub':'{% url "class_user_profiling:sessionsub" %}',
+      'departments':'{% url "class_user_profiling:dept" %}',
+    }
+
+
+    /**
+     * This function get institutes departments by calling api using get method.
+     * @param none
+     */
+    function get_institute_departments() {
+
+      $.ajax({
+          url: profiling_urls.departments, 
+          method: "GET",
+          data:{}
+      }).done(function(resp) {
+        var d = '';
+          if(resp.status == true){
+            $.each(resp.data,function(index,value){
+              
+              var tot_class = {};
+              $.each(value.departments,function(key,val){ tot_class[val.standard] = 1; });
+
+              d+= '<div class="card get-class-info" data-dep_id="'+value.id+'" style="cursor:pointer;">'
+                    +'<h6 class="card-title pl-3 py-3 bg-dark text-white">'+value.name+'</h6>'
+                    +'<div class="card-body">'
+                      +'<ul class="list-group">'
+                        +'<li class="list-group-item d-flex justify-content-between align-items-center p-2">Total Classes<span class="badge badge-primary">'+Object.keys(tot_class).length+'</span></li>'
+                        +'<li class="list-group-item d-flex justify-content-between align-items-center p-2">Total Student\'s<span class="badge badge-primary">0</span></li>'
+                        +'<li class="list-group-item d-flex justify-content-between align-items-center p-2">Total Teacher\'s<span class="badge badge-primary">0</span></li>'
+                      +'</ul>'
+                    +'</div>'
+                  +'</div>'
+            });
+            $('.append-departments').html(d);
+          }
+      }).fail(function(err) {
+        var msg = "Oops something went wrong!!!";
+        if (err.responseJSON) {
+          console.log(err.responseJSON);
+          // (err.responseJSON.non_field_errors) ? msg = err.responseJSON.non_field_errors.join():false;
+        }
+        myToast(msg,{color:'danger',duration:2000});
+      });
+    }//End
+
+    $(document).ready(function(){
+      get_institute_departments();
+
+      $('body').delegate('.get-class-info','click',function(){
+        window.location.href="/profiling/view-classes/"+$(this).attr('data-dep_id');
+      });
+    });
+  </script>
+  <!-- <script src="{% static 'js/dpy_classprofiling.js' %}"></script> -->
